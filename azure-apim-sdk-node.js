@@ -280,4 +280,4 @@ define("representations/OAuth2AuthenticationSettings", ["require", "exports"], f
     }
     exports.OAuth2AuthenticationSettings = OAuth2AuthenticationSettings;
 });
-//# sourceMappingURL=azure-apim.js.map
+//# sourceMappingURL=azure-apim-sdk-node.js.map
