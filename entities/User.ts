@@ -1,5 +1,5 @@
-import * as c from '../representations/Collection';
-import * as g from "./Group";
+import {Collection} from '../representations/Collection';
+import {Group} from "./Group";
 
 export class User {
     public id: string;
@@ -10,5 +10,5 @@ export class User {
     public state: string;
     public registrationDate: Date;
     public note: string;
-    public groups: c.Collection<g.Group>;
+    public groups: Collection<Group>;
 }

@@ -1,4 +1,4 @@
-import * as g from "./Group";
+import {Group} from "./Group";
 
 export class Product {
     public id: string;
@@ -9,5 +9,5 @@ export class Product {
     public approvalRequired: boolean;
     public subscriptionLimit: number;
     public state: string;
-    public groups: g.Group[];
+    public groups: Group[];
 }

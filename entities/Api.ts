@@ -1,5 +1,5 @@
-import * as c from '../representations/Collection';
-import * as o from '../entities/Operation';
+import {Collection} from '../representations/Collection';
+import {Operation} from '../entities/Operation';
 
 export class Api {
     public id: string;
@@ -8,5 +8,5 @@ export class Api {
     public serviceUrl: string;
     public path: string;
     public protocols: string[];
-    public operations: c.Collection<o.Operation>;
+    public operations: Collection<Operation>;
 }

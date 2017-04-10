@@ -1,5 +1,5 @@
-import * as eb from "./ErrorBody";
+import {ErrorBody} from "./ErrorBody";
 
 export class BaseError {
-    public error: eb.ErrorBody;
+    public error: ErrorBody;
 }

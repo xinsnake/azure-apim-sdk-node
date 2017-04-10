@@ -2,15 +2,15 @@
 
 import * as request from "request";
 import * as requestPromise from "request-promise";
-import * as credentials from './Credentials';
-import * as authentication from './Authentication';
+import {Credentials} from './Credentials';
+import {Authentication} from './Authentication';
 
 export class HttpHelper {
 
     private readonly VERSION = '2016-07-07';
-    private credentials: credentials.Credentials;
+    private credentials: Credentials;
 
-    constructor(_credentials: credentials.Credentials) {
+    constructor(_credentials: Credentials) {
         this.credentials = _credentials;
     }
 
@@ -48,7 +48,7 @@ export class HttpHelper {
             headers = {};
         }
 
-        let auth = new authentication.Authentication();
+        let auth = new Authentication();
         headers['Authorization'] = auth.getAuthorizationHeader(this.credentials);
         return headers;
     }

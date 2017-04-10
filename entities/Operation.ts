@@ -1,14 +1,14 @@
-import * as p from "../representations/Parameter";
-import * as req from "../representations/Request";
-import * as res from "../representations/Response";
+import {Parameter} from "../representations/Parameter";
+import {HttpRequest} from "../representations/HttpRequest";
+import {HttpResponse} from "../representations/HttpResponse";
 
 export class Operation {
     public id: string;
     public name: string;
     public nmethod: string;
     public urlTemplate: string;
-    public templateParameters: p.Parameter[];
+    public templateParameters: Parameter[];
     public description: string;
-    public request: req.HttpRequest;
-    public responses: res.HttpResponse[];
+    public request: HttpRequest;
+    public responses: HttpResponse[];
 }
