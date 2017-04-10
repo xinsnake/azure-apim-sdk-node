@@ -1,6 +1,4 @@
-/// <reference path="../reference.ts"/>
-
-class Parameter {
+export class Parameter {
     public name: string;
     public description: string;
     public type: string;

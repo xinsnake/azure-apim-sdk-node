@@ -1,6 +1,4 @@
-/// <reference path="../reference.ts"/>
-
-class ErrorDetail {
+export class ErrorDetail {
     public code: string;
     public message: string;
     public target: string;

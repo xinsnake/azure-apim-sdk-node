@@ -1,11 +1,12 @@
-/// <reference path="../reference.ts"/>
+import * as c from '../representations/Collection';
+import * as o from '../entities/Operation';
 
-class Api {
+export class Api {
     public id: string;
     public name: string;
     public description: string;
     public serviceUrl: string;
     public path: string;
     public protocols: string[];
-    public operations: Collection<Operation>;
+    public operations: c.Collection<o.Operation>;
 }

@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/xinsnake/azure-apim-sdk-node/issues"
   },
-  "homepage": "https://github.com/xinsnake/azure-apim-sdk-node#readme"
+  "homepage": "https://github.com/xinsnake/azure-apim-sdk-node#readme",
+  "dependencies": {
+    "request": "^2.81.0",
+    "request-promise": "^4.2.0"
+  }
 }

@@ -1,6 +1,4 @@
-/// <reference path="../reference.ts"/>
-
-class Certificate {
+export class Certificate {
     public id: string;
     public subject: string;
     public thumbprint: string;

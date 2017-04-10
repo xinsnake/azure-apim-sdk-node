@@ -1,6 +1,7 @@
-/// <reference path="../reference.ts"/>
+import * as c from '../representations/Collection';
+import * as g from "./Group";
 
-class User {
+export class User {
     public id: string;
     public firstName: string;
     public lastName: string;
@@ -9,5 +10,5 @@ class User {
     public state: string;
     public registrationDate: Date;
     public note: string;
-    public groups: Collection<Group>;
+    public groups: c.Collection<g.Group>;
 }

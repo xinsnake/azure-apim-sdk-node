@@ -1,6 +1,6 @@
-/// <reference path="../reference.ts"/>
+import * as g from "./Group";
 
-class Product {
+export class Product {
     public id: string;
     public name: string;
     public description: string;
@@ -9,5 +9,5 @@ class Product {
     public approvalRequired: boolean;
     public subscriptionLimit: number;
     public state: string;
-    public groups: Group[];
+    public groups: g.Group[];
 }

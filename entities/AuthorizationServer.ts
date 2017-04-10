@@ -1,6 +1,4 @@
-/// <reference path="../reference.ts"/>
-
-class AuthorizationServer {
+export class AuthorizationServer {
     public id: string;
     public name: string;
     public description: string;

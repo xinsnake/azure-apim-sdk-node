@@ -1,6 +1,4 @@
-/// <reference path="../reference.ts"/>
-
-class Backend {
+export class Backend {
     public id: string;
     public host: string;
     public skipCertificateChainValidation: boolean;

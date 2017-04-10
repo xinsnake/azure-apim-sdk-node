@@ -1,6 +1,4 @@
-/// <reference path="../reference.ts"/>
-
-class OperationSummary {
+export class OperationSummary {
     public id: string;
     public name: string;
     public method: string;

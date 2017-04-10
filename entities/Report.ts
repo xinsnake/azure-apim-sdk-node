@@ -1,6 +1,4 @@
-/// <reference path="../reference.ts"/>
-
-class Report {
+export class Report {
     public name: string;
     public timestamp: Date;
     public interval: string;

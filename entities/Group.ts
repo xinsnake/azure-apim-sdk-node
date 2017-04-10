@@ -1,6 +1,4 @@
-/// <reference path="../reference.ts"/>
-
-class Group {
+export class Group {
     public id: string;
     public name: string;
     public description: string;

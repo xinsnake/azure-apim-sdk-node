@@ -1,6 +1,4 @@
-/// <reference path="../reference.ts"/>
-
-class Subscription {
+export class Subscription {
     public id: string;
     public userId: string;
     public productId: string;

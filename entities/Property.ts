@@ -1,6 +1,4 @@
-/// <reference path="../reference.ts"/>
-
-class Property {
+export class Property {
     public id: string;
     public name: string;
     public value: string;
