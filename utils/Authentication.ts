@@ -1,17 +1,17 @@
 /// <reference path="../typings/index.d.ts"/>
 
 import * as crypto from 'crypto';
-import * as credentials from './Credentials';
+import * as cred from './Credentials';
 
 export class Authentication {
 
     private readonly TIME_TO_EXPIRE = 3600 * 1000;
-    private credentials: credentials.Credentials;
+    private credentials: cred.Credentials;
     private expireTime: Date;
     private hmac: crypto.Hmac;
     private headerCache: string;
 
-    public getAuthorizationHeader(_credentials: credentials.Credentials): string {
+    public getAuthorizationHeader(_credentials: cred.Credentials): string {
         this.credentials = _credentials;
 
         let currentTime = new Date();
