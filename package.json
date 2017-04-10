@@ -1,0 +1,19 @@
+{
+  "name": "azure-apim-sdk-node",
+  "version": "0.1.0",
+  "description": "",
+  "main": "azure-apim.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xinsnake/azure-apim-sdk-node.git"
+  },
+  "author": "Xinyun Zhou <me@xyzhou.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xinsnake/azure-apim-sdk-node/issues"
+  },
+  "homepage": "https://github.com/xinsnake/azure-apim-sdk-node#readme"
+}
