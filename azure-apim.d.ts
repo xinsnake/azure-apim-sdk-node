@@ -103,13 +103,14 @@ declare module "entities/Api" {
 declare module "clients/ApiClient" {
     import { Credentials } from "utils/Credentials";
     import { Api } from "entities/Api";
+    import { Collection } from "representations/Collection";
     export class ApiClient {
         private readonly PATH_APIS;
         private readonly PATH_OPERATIONS;
         private credentials;
         private httpHelper;
         constructor(_credentials: Credentials);
-        GetAll(filter?: string, top?: number, skip?: number): Promise<void>;
+        GetAll(filter?: string, top?: number, skip?: number): Promise<Collection<Api>>;
         Get(aid: string, accept: string, isExport: boolean): void;
         GetMeta(aid: string): void;
         CreateOrUpdate(aid: string, contentType: string, isImport: boolean, path: string, api: Api): void;
@@ -117,6 +118,8 @@ declare module "clients/ApiClient" {
         Update(aid: string, ifMatch: string, api: Api): void;
         Delete(aid: string, ifMatch: string): void;
     }
+}
+declare module "main" {
 }
 declare module "entities/AuthorizationServer" {
     export class AuthorizationServer {

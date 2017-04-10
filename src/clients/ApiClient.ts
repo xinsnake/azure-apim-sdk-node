@@ -17,7 +17,8 @@ export class ApiClient {
 
     public async GetAll(filter?: string, top?: number, skip?: number) {
         let params = {$filter: filter, $top: top, $skip: skip};
-        let rq = await this.httpHelper.Get<Collection<Api>>(this.PATH_APIS, params);
+        let collection = await this.httpHelper.Get<Collection<Api>>(this.PATH_APIS, params);
+        return collection;
     }
 
     public Get(aid: string, accept: string, isExport: boolean) {
