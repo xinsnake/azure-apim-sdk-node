@@ -119,8 +119,6 @@ declare module "clients/ApiClient" {
         Delete(aid: string, ifMatch: string): void;
     }
 }
-declare module "main" {
-}
 declare module "entities/AuthorizationServer" {
     export class AuthorizationServer {
         id: string;

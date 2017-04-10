@@ -175,12 +175,6 @@ define("clients/ApiClient", ["require", "exports", "utils/HttpHelper"], function
     }
     exports.ApiClient = ApiClient;
 });
-define("main", ["require", "exports", "utils/Credentials", "clients/ApiClient"], function (require, exports, Credentials_1, ApiClient_1) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.Credentials = Credentials_1.Credentials;
-    exports.ApiClient = ApiClient_1.ApiClient;
-});
 define("entities/AuthorizationServer", ["require", "exports"], function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
