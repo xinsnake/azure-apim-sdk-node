@@ -15,20 +15,9 @@ export class ApiClient {
         this.httpHelper = new HttpHelper(this.credentials);
     }
 
-    public GetAll(filter?: string, top?: number, skip?: number) {
-        let path = this.PATH_APIS;
-        let params = {
-            $filter: filter,
-            $top: top,
-            $skip: skip
-        };
-        let rq = this.httpHelper.Get(path, params);
-        let result = rq.then<Collection<Api>>((value) => {
-            return value;
-        }, (reason) => {
-            console.log(reason);
-        });
-        console.log(result);
+    public async GetAll(filter?: string, top?: number, skip?: number) {
+        let params = {$filter: filter, $top: top, $skip: skip};
+        let rq = await this.httpHelper.Get<Collection<Api>>(this.PATH_APIS, params);
     }
 
     public Get(aid: string, accept: string, isExport: boolean) {

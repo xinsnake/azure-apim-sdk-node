@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "declaration": true,
+        "module": "amd",
+        "moduleResolution": "node",
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "outFile": "./azure-apim.js",        
+        "preserveConstEnums": true,
+        "pretty": true,
+        "removeComments": true,
+        "sourceMap": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "target": "es2015"
+    },
+    "include": [
+        "src/**/*.ts"
+    ]
+}

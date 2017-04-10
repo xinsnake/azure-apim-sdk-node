@@ -1,7 +1,7 @@
-/// <reference path="../typings/index.d.ts"/>
+/// <reference path="../../typings/index.d.ts"/>
 
 import * as request from "request";
-import * as requestPromise from "request-promise";
+import * as requestp from "request-promise-native";
 import {Credentials} from './Credentials';
 import {Authentication} from './Authentication';
 
@@ -14,20 +14,20 @@ export class HttpHelper {
         this.credentials = _credentials;
     }
 
-    public Get(path: string, params?: Object, headers?: Object): requestPromise.RequestPromise {
+    public async Get<T>(path: string, params?: any, headers?: any): Promise<T> {
         let options: request.CoreOptions & request.UriOptions = {
             uri: this.prepareUri(path, params),
             baseUrl: this.credentials.serviceUri,
             headers: headers
         }
-        return requestPromise.get(options);
+        return requestp.get(options);
     }
 
-    private prepareUri(path: string, params?: Object) {
+    private prepareUri(path: string, params?: any) {
         return `${path}?${this.prepareParams(params)}`;
     }
 
-    private prepareParams(params?: Object) {
+    private prepareParams(params?: any) {
         if (typeof params !== 'object') {
             params = {};
         }

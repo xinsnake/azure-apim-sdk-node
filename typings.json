@@ -1,9 +1,10 @@
 {
   "globalDependencies": {
-    "node": "registry:dt/node#7.0.0+20170322231424",
-    "request-promise": "registry:dt/request-promise#4.1.0+20161119044246"
+    "node": "registry:dt/node#7.0.0+20170322231424"
   },
   "dependencies": {
-    "request": "registry:dt/request#0.0.0+20170323073920"
+    "form-data": "registry:dt/form-data#0.0.0+20161115134730",
+    "request": "registry:dt/request#0.0.0+20170323073920",
+    "request-promise-native": "registry:dt/request-promise-native#1.0.3+20161105203411"
   }
 }
