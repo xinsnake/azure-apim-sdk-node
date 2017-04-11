@@ -65,7 +65,7 @@ export class HttpHelper {
         let options: request.CoreOptions & request.UriOptions = {
             uri: this.prepareUri(path, params),
             baseUrl: this.credentials.serviceUri,
-            headers: headers
+            headers: this.prepareHeaders(headers)
         }
         return requestp.get(options);
     }

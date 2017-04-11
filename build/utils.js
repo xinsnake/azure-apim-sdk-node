@@ -54,7 +54,7 @@ class HttpHelper {
             let options = {
                 uri: this.prepareUri(path, params),
                 baseUrl: this.credentials.serviceUri,
-                headers: headers
+                headers: this.prepareHeaders(headers)
             };
             return requestp.get(options);
         });
@@ -69,6 +69,9 @@ class HttpHelper {
         params['api-version'] = this.VERSION;
         let paramString = "";
         for (let key in params) {
+            if (typeof params[key] === 'undefined') {
+                continue;
+            }
             if (paramString != "") {
                 paramString += "&";
             }
