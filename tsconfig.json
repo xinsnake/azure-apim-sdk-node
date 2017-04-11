@@ -2,15 +2,15 @@
     "compilerOptions": {
         "baseUrl": ".",
         "declaration": true,
-        "module": "amd",
+        "module": "commonjs",
         "moduleResolution": "node",
         "noImplicitAny": true,
         "noImplicitReturns": true,
-        "outFile": "./azure-apim-sdk-node.js",        
+        "outDir": "build",
         "preserveConstEnums": true,
         "pretty": true,
         "removeComments": true,
-        "sourceMap": true,
+        "sourceMap": false,
         "target": "es2015"
     },
     "include": [

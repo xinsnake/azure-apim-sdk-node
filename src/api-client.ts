@@ -1,7 +1,6 @@
-import {Credentials} from '../utils/Credentials';
-import {HttpHelper} from '../utils/HttpHelper';
-import {Api} from '../entities/Api';
-import {Collection} from '../representations/Collection';
+import {Api} from './entities';
+import {Collection} from './representation';
+import {Credentials, HttpHelper} from './utils';
 
 export class ApiClient {
 
