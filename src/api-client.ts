@@ -1,4 +1,4 @@
-import {Api} from './entities';
+import {Api, ImportLink} from './entities';
 import {Collection} from './representation';
 import {Credentials, HttpHelper} from './utils';
 
@@ -15,36 +15,38 @@ export class ApiClient {
     }
 
     public async GetAll(filter?: string, top?: number, skip?: number) {
-        let path = this.PATH_APIS;
-        let params = {$filter: filter, $top: top, $skip: skip};
-        return await this.httpHelper.Get<Collection<Api>>(path, params);
+        let params = {'$filter': filter, '$top': top, '$skip': skip};
+        return await this.httpHelper.Get<Collection<Api>>(this.PATH_APIS, params);
     }
 
     public async Get(aid: string, accept?: string, isExport?: boolean) {
-        let path = aid;
-        let params = {export: isExport};
-        let headers = {Accept: accept}
-        return await this.httpHelper.Get<Api>(path, params, headers);
+        let params = {'export': isExport};
+        let headers = {'Accept': accept}
+        return await this.httpHelper.Get<Api>(aid, params, headers);
     }
 
     public async GetMeta(aid: string) {
-        let path = aid;
-        return await this.httpHelper.Head(path);
+        return await this.httpHelper.Head(aid);
     }
 
-    public CreateOrUpdate(aid: string, contentType: string, isImport: boolean, path: string, api: Api) {
-
+    public async CreateOrImport(aid: string, contentType: string, isImport: boolean, path: string, payload: Api | ImportLink) {
+        let params = {'import': isImport, 'path': path};
+        let headers = {'Content-Type': contentType};
+        return await this.httpHelper.Put(aid, params, headers, payload);
     }
 
-    public CreateOrUpdateViaImport(aid: string, ifMatch: string, contentType: string, api: Api) {
-
+    public async UpdateViaImport(aid: string, ifMatch: string, contentType: string, payload: ImportLink) {
+        let headers = {'If-Match': ifMatch, 'Content-Type': contentType};
+        return await this.httpHelper.Put(aid, undefined, headers, payload);
     }
 
-    public Update(aid: string, ifMatch: string, api: Api) {
-
+    public async Update(aid: string, ifMatch: string, payload: Api) {
+        let headers = {'If-Match': ifMatch};
+        return await this.httpHelper.Patch(aid, undefined, headers, payload);
     }
 
-    public Delete(aid: string, ifMatch: string) {
-
+    public async Delete(aid: string, ifMatch: string) {
+        let headers = {'If-Match': ifMatch};
+        return await this.httpHelper.Delete(aid, undefined, headers);
     }
 }

@@ -18,32 +18,46 @@ class ApiClient {
     }
     GetAll(filter, top, skip) {
         return __awaiter(this, void 0, void 0, function* () {
-            let path = this.PATH_APIS;
-            let params = { $filter: filter, $top: top, $skip: skip };
-            return yield this.httpHelper.Get(path, params);
+            let params = { '$filter': filter, '$top': top, '$skip': skip };
+            return yield this.httpHelper.Get(this.PATH_APIS, params);
         });
     }
     Get(aid, accept, isExport) {
         return __awaiter(this, void 0, void 0, function* () {
-            let path = aid;
-            let params = { export: isExport };
-            let headers = { Accept: accept };
-            return yield this.httpHelper.Get(path, params, headers);
+            let params = { 'export': isExport };
+            let headers = { 'Accept': accept };
+            return yield this.httpHelper.Get(aid, params, headers);
         });
     }
     GetMeta(aid) {
         return __awaiter(this, void 0, void 0, function* () {
-            let path = aid;
-            return yield this.httpHelper.Head(path);
+            return yield this.httpHelper.Head(aid);
         });
     }
-    CreateOrUpdate(aid, contentType, isImport, path, api) {
+    CreateOrImport(aid, contentType, isImport, path, payload) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let params = { 'import': isImport, 'path': path };
+            let headers = { 'Content-Type': contentType };
+            return yield this.httpHelper.Put(aid, params, headers, payload);
+        });
     }
-    CreateOrUpdateViaImport(aid, ifMatch, contentType, api) {
+    UpdateViaImport(aid, ifMatch, contentType, payload) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let headers = { 'If-Match': ifMatch, 'Content-Type': contentType };
+            return yield this.httpHelper.Put(aid, undefined, headers, payload);
+        });
     }
-    Update(aid, ifMatch, api) {
+    Update(aid, ifMatch, payload) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let headers = { 'If-Match': ifMatch };
+            return yield this.httpHelper.Patch(aid, undefined, headers, payload);
+        });
     }
     Delete(aid, ifMatch) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let headers = { 'If-Match': ifMatch };
+            return yield this.httpHelper.Delete(aid, undefined, headers);
+        });
     }
 }
 exports.ApiClient = ApiClient;

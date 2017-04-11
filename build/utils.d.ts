@@ -20,6 +20,9 @@ export declare class HttpHelper {
     constructor(_credentials: Credentials);
     Get<T>(path: string, params?: any, headers?: any): Promise<T>;
     Head(path: string): Promise<string>;
+    Put(path: string, params?: any, headers?: any, payload?: any): Promise<void>;
+    Patch(path: string, params?: any, headers?: any, payload?: any): Promise<void>;
+    Delete(path: string, params?: any, headers?: any): Promise<void>;
     private prepareUri(path, params?);
     private prepareParams(params?);
     private prepareHeaders(headers?);

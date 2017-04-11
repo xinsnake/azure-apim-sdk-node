@@ -1,4 +1,4 @@
-import { Api } from './entities';
+import { Api, ImportLink } from './entities';
 import { Collection } from './representation';
 import { Credentials } from './utils';
 export declare class ApiClient {
@@ -10,8 +10,8 @@ export declare class ApiClient {
     GetAll(filter?: string, top?: number, skip?: number): Promise<Collection<Api>>;
     Get(aid: string, accept?: string, isExport?: boolean): Promise<Api>;
     GetMeta(aid: string): Promise<string>;
-    CreateOrUpdate(aid: string, contentType: string, isImport: boolean, path: string, api: Api): void;
-    CreateOrUpdateViaImport(aid: string, ifMatch: string, contentType: string, api: Api): void;
-    Update(aid: string, ifMatch: string, api: Api): void;
-    Delete(aid: string, ifMatch: string): void;
+    CreateOrImport(aid: string, contentType: string, isImport: boolean, path: string, payload: Api | ImportLink): Promise<void>;
+    UpdateViaImport(aid: string, ifMatch: string, contentType: string, payload: ImportLink): Promise<void>;
+    Update(aid: string, ifMatch: string, payload: Api): Promise<void>;
+    Delete(aid: string, ifMatch: string): Promise<void>;
 }

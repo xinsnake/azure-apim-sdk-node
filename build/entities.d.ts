@@ -1,13 +1,16 @@
 import { Collection, Parameter, HttpRequest, HttpResponse } from './representation';
 export declare class Api {
-    id: string;
-    name: string;
-    description: string;
-    serviceUrl: string;
-    path: string;
-    protocols: string[];
-    operations: Collection<Operation>;
-    subscriptionKeyParameterNames: any;
+    id?: string;
+    name?: string;
+    description?: string;
+    serviceUrl?: string;
+    path?: string;
+    protocols?: string[];
+    operations?: Collection<Operation>;
+    subscriptionKeyParameterNames?: any;
+}
+export declare class ImportLink {
+    link: string;
 }
 export declare class AuthorizationServer {
     id: string;

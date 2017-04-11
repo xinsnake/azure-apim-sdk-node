@@ -69,6 +69,38 @@ class HttpHelper {
             return requestp.head(options).then((value) => { return value.etag; });
         });
     }
+    Put(path, params, headers, payload) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let options = {
+                uri: this.prepareUri(path, params),
+                baseUrl: this.credentials.serviceUri,
+                headers: this.prepareHeaders(headers),
+                body: JSON.stringify(payload)
+            };
+            return requestp.put(options);
+        });
+    }
+    Patch(path, params, headers, payload) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let options = {
+                uri: this.prepareUri(path, params),
+                baseUrl: this.credentials.serviceUri,
+                headers: this.prepareHeaders(headers),
+                body: JSON.stringify(payload)
+            };
+            return requestp.patch(options);
+        });
+    }
+    Delete(path, params, headers) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let options = {
+                uri: this.prepareUri(path, params),
+                baseUrl: this.credentials.serviceUri,
+                headers: this.prepareHeaders(headers)
+            };
+            return requestp.delete(options);
+        });
+    }
     prepareUri(path, params) {
         return `${path}?${this.prepareParams(params)}`;
     }

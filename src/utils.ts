@@ -67,7 +67,7 @@ export class HttpHelper {
             uri: this.prepareUri(path, params),
             baseUrl: this.credentials.serviceUri,
             headers: this.prepareHeaders(headers)
-        }
+        };
         return requestp.get(options).then<T>((value) => {return <T> JSON.parse(value)});
     }
 
@@ -76,8 +76,37 @@ export class HttpHelper {
             uri: this.prepareUri(path),
             baseUrl: this.credentials.serviceUri,
             headers: this.prepareHeaders()
-        }
+        };
         return requestp.head(options).then((value) => {return value.etag});
+    }
+
+    public async Put(path: string, params?: any, headers?: any, payload?: any): Promise<void> {
+        let options: request.CoreOptions & request.UriOptions = {
+            uri: this.prepareUri(path, params),
+            baseUrl: this.credentials.serviceUri,
+            headers: this.prepareHeaders(headers),
+            body: JSON.stringify(payload)
+        };
+        return requestp.put(options);
+    }
+
+    public async Patch(path: string, params?: any, headers?: any, payload?: any): Promise<void> {
+        let options: request.CoreOptions & request.UriOptions = {
+            uri: this.prepareUri(path, params),
+            baseUrl: this.credentials.serviceUri,
+            headers: this.prepareHeaders(headers),
+            body: JSON.stringify(payload)
+        };
+        return requestp.patch(options);
+    }
+
+    public async Delete(path: string, params?: any, headers?: any): Promise<void> {
+        let options: request.CoreOptions & request.UriOptions = {
+            uri: this.prepareUri(path, params),
+            baseUrl: this.credentials.serviceUri,
+            headers: this.prepareHeaders(headers)
+        };
+        return requestp.delete(options);
     }
 
     private prepareUri(path: string, params?: any) {
