@@ -82,6 +82,9 @@ export class HttpHelper {
 
         let paramString = "";
         for (let key in params) {
+            if (typeof params[key] === 'undefined') {
+                continue;
+            }
             if (paramString != "") {
                 paramString += "&";
             }
