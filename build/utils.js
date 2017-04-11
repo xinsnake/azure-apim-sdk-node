@@ -80,7 +80,7 @@ class HttpHelper {
         return paramString;
     }
     prepareHeaders(headers) {
-        if (typeof headers === 'object') {
+        if (typeof headers !== 'object') {
             headers = {};
         }
         let auth = new Authentication();

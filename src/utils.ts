@@ -94,7 +94,7 @@ export class HttpHelper {
     }
 
     private prepareHeaders(headers?: any) {
-        if (typeof headers === 'object') {
+        if (typeof headers !== 'object') {
             headers = {};
         }
 
