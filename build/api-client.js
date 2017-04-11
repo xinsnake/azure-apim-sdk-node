@@ -18,14 +18,24 @@ class ApiClient {
     }
     GetAll(filter, top, skip) {
         return __awaiter(this, void 0, void 0, function* () {
+            let path = this.PATH_APIS;
             let params = { $filter: filter, $top: top, $skip: skip };
-            let collection = yield this.httpHelper.Get(this.PATH_APIS, params);
-            return collection;
+            return yield this.httpHelper.Get(path, params);
         });
     }
     Get(aid, accept, isExport) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let path = aid;
+            let params = { export: isExport };
+            let headers = { Accept: accept };
+            return yield this.httpHelper.Get(path, params, headers);
+        });
     }
     GetMeta(aid) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let path = aid;
+            return yield this.httpHelper.Head(path);
+        });
     }
     CreateOrUpdate(aid, contentType, isImport, path, api) {
     }

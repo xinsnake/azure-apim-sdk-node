@@ -56,7 +56,17 @@ class HttpHelper {
                 baseUrl: this.credentials.serviceUri,
                 headers: this.prepareHeaders(headers)
             };
-            return requestp.get(options);
+            return requestp.get(options).then((value) => { return JSON.parse(value); });
+        });
+    }
+    Head(path) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let options = {
+                uri: this.prepareUri(path),
+                baseUrl: this.credentials.serviceUri,
+                headers: this.prepareHeaders()
+            };
+            return requestp.head(options).then((value) => { return value.etag; });
         });
     }
     prepareUri(path, params) {

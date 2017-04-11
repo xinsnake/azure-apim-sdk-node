@@ -39,6 +39,7 @@ export class Authentication {
         return this.hmac.digest('base64');
     }
 }
+
 export class Credentials {
 
     public serviceUri: string;
@@ -67,7 +68,16 @@ export class HttpHelper {
             baseUrl: this.credentials.serviceUri,
             headers: this.prepareHeaders(headers)
         }
-        return requestp.get(options);
+        return requestp.get(options).then<T>((value) => {return <T> JSON.parse(value)});
+    }
+
+    public async Head(path: string): Promise<string> {
+        let options: request.CoreOptions & request.UriOptions = {
+            uri: this.prepareUri(path),
+            baseUrl: this.credentials.serviceUri,
+            headers: this.prepareHeaders()
+        }
+        return requestp.head(options).then((value) => {return value.etag});
     }
 
     private prepareUri(path: string, params?: any) {

@@ -7,6 +7,7 @@ export declare class Api {
     path: string;
     protocols: string[];
     operations: Collection<Operation>;
+    subscriptionKeyParameterNames: any;
 }
 export declare class AuthorizationServer {
     id: string;

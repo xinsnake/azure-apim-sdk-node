@@ -8,6 +8,7 @@ export class Api {
     public path: string;
     public protocols: string[];
     public operations: Collection<Operation>;
+    public subscriptionKeyParameterNames: any;
 }
 
 export class AuthorizationServer {
