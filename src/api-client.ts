@@ -29,13 +29,13 @@ export class ApiClient {
         return await this.httpHelper.Head(aid);
     }
 
-    public async CreateOrImport(aid: string, contentType: string, isImport: boolean, path: string, payload: Api | ImportLink) {
+    public async CreateOrImport(aid: string, contentType: string, isImport: boolean, path: string, payload: Api | ImportLink | string) {
         let params = {'import': isImport, 'path': path};
         let headers = {'Content-Type': contentType};
         return await this.httpHelper.Put(aid, params, headers, payload);
     }
 
-    public async UpdateViaImport(aid: string, ifMatch: string, contentType: string, payload: ImportLink) {
+    public async UpdateViaImport(aid: string, ifMatch: string, contentType: string, payload: Api | ImportLink | string) {
         let headers = {'If-Match': ifMatch, 'Content-Type': contentType};
         return await this.httpHelper.Put(aid, undefined, headers, payload);
     }
