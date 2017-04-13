@@ -65,12 +65,12 @@
 
 ## Logger entity
 
-* List loggers
-* Get a specific logger
-* Get the metadata for a specific logger
-* Create a logger
-* Update a logger
-* Delete a logger
+* ✔ List loggers
+* ✔ Get a specific logger
+* ✔ Get the metadata for a specific logger
+* ✔ Create a logger
+* ✔ Update a logger
+* ✔ Delete a logger
 
 ## Product entity
 
