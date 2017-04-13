@@ -144,11 +144,11 @@
 
 ## User entity
 
-* Get a specific user
-* Get the metadata for a specific user
-* Create a new user
-* Update a user
-* Delete a user
+* ✔ Get a specific user
+* ✔ Get the metadata for a specific user
+* ✔ Create a new user
+* ✔ Update a user
+* ✔ Delete a user
 * List developer groups associated with a user
 * List subscriptions for a specific user
 * Get single sign-on URL for a user
