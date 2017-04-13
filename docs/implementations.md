@@ -52,12 +52,12 @@
 
 ## Group entity
 
-* Get a list of all groups
-* Get a specific group
-* Get the metadata for a specific group
-* Create a new group
-* Update an existing group
-* Delete a group
+* ✔ Get a list of all groups
+* ✔ Get a specific group
+* ✔ Get the metadata for a specific group
+* ✔ Create a new group
+* ✔ Update an existing group
+* ✔ Delete a group
 * List group members
 * Add a member to a group
 * Remove a member from a group
