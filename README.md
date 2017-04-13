@@ -10,5 +10,5 @@ I'll write this when I have more things ready.
 
 ## Implementation Status
 
-Check [Implementations Documentation](../blob/master/docs/implementations.md) to see the
+Check [Implementations Documentation](./blob/master/docs/implementations.md) to see the
 status of current implementation.
