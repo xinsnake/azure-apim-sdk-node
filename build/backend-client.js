@@ -9,45 +9,44 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("./utils");
-class LoggerClient {
+class BackendClient {
     constructor(_credentials) {
-        this.PATH_LOGGERS = '/loggers';
+        this.PATH_BACKENDS = '/backends';
         this.credentials = _credentials;
         this.httpHelper = new utils_1.HttpHelper(this.credentials);
     }
-    GetAll(filter, top, skip) {
+    GetAll(filter, top, skip, expandGroups) {
         return __awaiter(this, void 0, void 0, function* () {
-            let params = { '$filter': filter, '$top': top, '$skip': skip };
-            return yield this.httpHelper.Get(this.PATH_LOGGERS, params);
+            let params = { '$filter': filter, '$top': top, '$skip': skip, 'expandGroups': expandGroups };
+            return yield this.httpHelper.Get(this.PATH_BACKENDS, params);
         });
     }
-    Get(loggerId) {
+    Get(backendId) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.httpHelper.Get(loggerId);
+            return yield this.httpHelper.Get(backendId);
         });
     }
-    GetMeta(loggerId) {
+    GetMeta(backendId) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.httpHelper.Head(loggerId);
+            return yield this.httpHelper.Head(backendId);
         });
     }
-    Create(loggerId, payload) {
+    Create(backendId, payload) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.httpHelper.Put(loggerId, undefined, undefined, payload);
+            return yield this.httpHelper.Put(backendId, undefined, undefined, payload);
         });
     }
-    Update(loggerId, ifMatch, payload) {
+    Update(backendId, ifMatch, payload) {
         return __awaiter(this, void 0, void 0, function* () {
             let headers = { 'If-Match': ifMatch };
-            return yield this.httpHelper.Patch(loggerId, undefined, headers, payload);
+            return yield this.httpHelper.Patch(backendId, undefined, headers, payload);
         });
     }
-    Delete(loggerId, deleteSubscriptions, ifMatch) {
+    Delete(backendId, ifMatch) {
         return __awaiter(this, void 0, void 0, function* () {
-            let params = { 'deleteSubscriptions': deleteSubscriptions };
             let headers = { 'If-Match': ifMatch };
-            return yield this.httpHelper.Delete(loggerId, params, headers);
+            return yield this.httpHelper.Delete(backendId, undefined, headers);
         });
     }
 }
-exports.LoggerClient = LoggerClient;
+exports.BackendClient = BackendClient;

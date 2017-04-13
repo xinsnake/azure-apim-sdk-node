@@ -36,9 +36,9 @@ export class AuthorizationServer {
 }
 
 export class Backend {
-    public id: string;
-    public host: string;
-    public skipCertificateChainValidation: boolean;
+    public id?: string;
+    public host?: string;
+    public skipCertificateChainValidation?: boolean;
 }
 
 export class Certificate {

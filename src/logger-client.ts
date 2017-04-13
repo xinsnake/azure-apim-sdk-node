@@ -13,8 +13,8 @@ export class LoggerClient {
         this.httpHelper = new HttpHelper(this.credentials);
     }
 
-    public async GetAll(filter?: string, top?: number, skip?: number, expandGroups?: boolean) {
-        let params = {'$filter': filter, '$top': top, '$skip': skip, 'expandGroups': expandGroups};
+    public async GetAll(filter?: string, top?: number, skip?: number) {
+        let params = {'$filter': filter, '$top': top, '$skip': skip};
         return await this.httpHelper.Get<Collection<Logger>>(this.PATH_LOGGERS, params);
     }
 

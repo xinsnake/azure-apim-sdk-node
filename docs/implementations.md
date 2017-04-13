@@ -35,12 +35,12 @@
 
 ## Backend entity
 
-* List backend services
-* Get a specific backend
-* Get the metadata for a specific backend
-* Create a backend
-* Update a backend
-* Delete a backend
+* ✔ List backend services
+* ✔ Get a specific backend
+* ✔ Get the metadata for a specific backend
+* ✔ Create a backend
+* ✔ Update a backend
+* ✔ Delete a backend
 
 ## Certificate entity
 

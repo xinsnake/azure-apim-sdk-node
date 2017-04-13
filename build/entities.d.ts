@@ -32,9 +32,9 @@ export declare class AuthorizationServer {
     resourceOwnerPassword: string;
 }
 export declare class Backend {
-    id: string;
-    host: string;
-    skipCertificateChainValidation: boolean;
+    id?: string;
+    host?: string;
+    skipCertificateChainValidation?: boolean;
 }
 export declare class Certificate {
     id: string;
