@@ -5,7 +5,6 @@ import {Credentials, HttpHelper} from './utils';
 export class ApiClient {
 
     private readonly PATH_APIS = '/apis';
-    private readonly PATH_OPERATIONS = '/operations';
     private credentials: Credentials;
     private httpHelper: HttpHelper;
 

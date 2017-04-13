@@ -3,7 +3,6 @@ import { Collection } from './representation';
 import { Credentials } from './utils';
 export declare class ApiClient {
     private readonly PATH_APIS;
-    private readonly PATH_OPERATIONS;
     private credentials;
     private httpHelper;
     constructor(_credentials: Credentials);

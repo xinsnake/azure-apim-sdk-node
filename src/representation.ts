@@ -1,7 +1,7 @@
 export class Collection<T> {
-    public nextLink: string;
-    public count: number;
-    public value: T[];
+    public nextLink?: string;
+    public count?: number;
+    public value?: T[];
 }
 
 export class Parameter {

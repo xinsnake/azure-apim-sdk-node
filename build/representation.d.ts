@@ -1,7 +1,7 @@
 export declare class Collection<T> {
-    nextLink: string;
-    count: number;
-    value: T[];
+    nextLink?: string;
+    count?: number;
+    value?: T[];
 }
 export declare class Parameter {
     name: string;

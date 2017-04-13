@@ -9,54 +9,45 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("./utils");
-class ApiClient {
+class ProductClient {
     constructor(_credentials) {
-        this.PATH_APIS = '/apis';
+        this.PATH_PRODUCTS = '/products';
         this.credentials = _credentials;
         this.httpHelper = new utils_1.HttpHelper(this.credentials);
     }
-    GetAll(filter, top, skip) {
+    GetAll(filter, top, skip, expandGroups) {
         return __awaiter(this, void 0, void 0, function* () {
-            let params = { '$filter': filter, '$top': top, '$skip': skip };
-            return yield this.httpHelper.Get(this.PATH_APIS, params);
+            let params = { '$filter': filter, '$top': top, '$skip': skip, 'expandGroups': expandGroups };
+            return yield this.httpHelper.Get(this.PATH_PRODUCTS, params);
         });
     }
-    Get(aid, accept, isExport) {
+    Get(pid) {
         return __awaiter(this, void 0, void 0, function* () {
-            let params = { 'export': isExport };
-            let headers = { 'Accept': accept };
-            return yield this.httpHelper.Get(aid, params, headers);
+            return yield this.httpHelper.Get(pid);
         });
     }
-    GetMeta(aid) {
+    GetMeta(pid) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.httpHelper.Head(aid);
+            return yield this.httpHelper.Head(pid);
         });
     }
-    CreateOrImport(aid, contentType, isImport, path, payload) {
+    Create(pid, payload) {
         return __awaiter(this, void 0, void 0, function* () {
-            let params = { 'import': isImport, 'path': path };
-            let headers = { 'Content-Type': contentType };
-            return yield this.httpHelper.Put(aid, params, headers, payload);
+            return yield this.httpHelper.Put(pid, undefined, undefined, payload);
         });
     }
-    UpdateViaImport(aid, ifMatch, contentType, payload) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let headers = { 'If-Match': ifMatch, 'Content-Type': contentType };
-            return yield this.httpHelper.Put(aid, undefined, headers, payload);
-        });
-    }
-    Update(aid, ifMatch, payload) {
+    Update(pid, ifMatch, payload) {
         return __awaiter(this, void 0, void 0, function* () {
             let headers = { 'If-Match': ifMatch };
-            return yield this.httpHelper.Patch(aid, undefined, headers, payload);
+            return yield this.httpHelper.Patch(pid, undefined, headers, payload);
         });
     }
-    Delete(aid, ifMatch) {
+    Delete(pid, deleteSubscriptions, ifMatch) {
         return __awaiter(this, void 0, void 0, function* () {
+            let params = { 'deleteSubscriptions': deleteSubscriptions };
             let headers = { 'If-Match': ifMatch };
-            return yield this.httpHelper.Delete(aid, undefined, headers);
+            return yield this.httpHelper.Delete(pid, params, headers);
         });
     }
 }
-exports.ApiClient = ApiClient;
+exports.ProductClient = ProductClient;
