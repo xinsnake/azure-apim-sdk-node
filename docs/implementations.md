@@ -26,12 +26,12 @@
 
 ## Authorization ​Server entity
 
-* Get a list of authorization servers
-* Get a specific authorization server
-* Get the metadata for a specific authorization server
-* Create a new authorization server
-* Update an authorization server
-* Delete an authorization server
+* ✔ Get a list of authorization servers
+* ✔ Get a specific authorization server
+* ✔ Get the metadata for a specific authorization server
+* ✔ Create a new authorization server
+* ✔ Update an authorization server
+* ✔ Delete an authorization server
 
 ## Backend entity
 
@@ -44,11 +44,11 @@
 
 ## Certificate entity
 
-* Get a list of all certificates
-* Get a certificate
-* Get the metadata for a certificate
-* Add or update a certificate
-* Remove a certificate
+* ✔ Get a list of all certificates
+* ✔ Get a certificate
+* ✔ Get the metadata for a certificate
+* ✔ Add or update a certificate
+* ✔ Remove a certificate
 
 ## Group entity
 
@@ -95,12 +95,12 @@
 
 ## Property ​entity
 
-* Get a list of all properties
-* Get a specific property
-* Get the metadata for a specific property
-* Create a new property
-* Update an existing property
-* Delete a property
+* ✔ Get a list of all properties
+* ✔ Get a specific property
+* ✔ Get the metadata for a specific property
+* ✔ Create a new property
+* ✔ Update an existing property
+* ✔ Delete a property
 
 ## Report entity
 
@@ -115,12 +115,12 @@
 
 ## Subscription entity
 
-* Get a list of all subscriptions
-* Get subscription details
-* Get the metadata for a subscription
-* Subscribe a user to a product
-* Update subscription details
-* Delete a subscription
+* ✔ Get a list of all subscriptions
+* ✔ Get subscription details
+* ✔ Get the metadata for a subscription
+* ✔ Subscribe a user to a product
+* ✔ Update subscription details
+* ✔ Delete a subscription
 * Regenerate subscription primary key
 * Regenerate subscription secondary key
 
