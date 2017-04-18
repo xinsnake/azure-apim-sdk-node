@@ -80,11 +80,11 @@
 * ✔ Create a new product
 * ✔ Update a product
 * ✔ Delete a product
-* List APIs associated with a product
-* Check API membership in a product
-* Add an API to a product
-* Remove an API from a product
-* List subscriptions to a product
+* ✔ List APIs associated with a product
+* ✔ Check API membership in a product
+* ✔ Add an API to a product
+* ✔ Remove an API from a product
+* ✔ List subscriptions to a product
 * Get policy configuration for a product
 * Check a product for attached policy configuration
 * Set policy configuration for a product
