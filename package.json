@@ -18,10 +18,12 @@
   },
   "homepage": "https://github.com/xinsnake/azure-apim-sdk-node#readme",
   "dependencies": {
+    "@types/node": "6.0.69",
+    "@types/q": "1.0.0",
+    "@types/request": "0.0.42",
+    "@types/request-promise-native": "1.0.2",
+    "q": "1.5.0",
     "request": "2.81.0",
     "request-promise-native": "1.0.3"
-  },
-  "devDependencies": {
-    "form-data": "2.1.4"
   }
 }

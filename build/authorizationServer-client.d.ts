@@ -7,7 +7,7 @@ export declare class AuthorizationServerClient {
     constructor(_credentials: Credentials);
     GetAll(filter?: string, top?: number, skip?: number): Promise<AuthorizationServer[]>;
     Get(authsid: string): Promise<AuthorizationServer>;
-    GetMeta(authsid: string): Promise<string>;
+    GetMeta(authsid: string): Promise<number>;
     Create(authsid: string, payload: AuthorizationServer | string): Promise<void>;
     Update(authsid: string, ifMatch: string, payload: AuthorizationServer): Promise<void>;
     Delete(authsid: string, ifMatch: string): Promise<void>;

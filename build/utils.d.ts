@@ -1,4 +1,3 @@
-/// <reference path="../typings/index.d.ts" />
 export declare class Authentication {
     private readonly TIME_TO_EXPIRE;
     private credentials;
@@ -24,7 +23,7 @@ export declare class HttpHelper {
     Get<T>(type: {
         new (): T;
     }, path: string, params?: any, headers?: any): Promise<T>;
-    Head(path: string): Promise<string>;
+    Head(path: string): Promise<number>;
     Put(path: string, params?: any, headers?: any, payload?: any): Promise<void>;
     Patch(path: string, params?: any, headers?: any, payload?: any): Promise<void>;
     Delete(path: string, params?: any, headers?: any): Promise<void>;

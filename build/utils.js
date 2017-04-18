@@ -86,10 +86,12 @@ class HttpHelper {
             let options = {
                 uri: this.prepareUri(path),
                 baseUrl: this.credentials.serviceUri,
-                headers: this.prepareHeaders()
+                headers: this.prepareHeaders(),
+                simple: false,
+                resolveWithFullResponse: true
             };
-            return requestp.head(options).then((value) => {
-                return value.etag;
+            return requestp.head(options).then((response) => {
+                return parseInt(response.statusCode);
             });
         });
     }

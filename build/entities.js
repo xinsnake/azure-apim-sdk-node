@@ -53,7 +53,7 @@ class Product extends GenericEntity {
     ListApis(filter, top, skip) {
         return __awaiter(this, void 0, void 0, function* () {
             let params = { '$filter': filter, '$top': top, '$skip': skip };
-            return yield this.httpHelper.GetCollection(Api, this.PATH_PRODUCTS + this.PATH_APIS, params);
+            return yield this.httpHelper.GetCollection(Api, this.id + this.PATH_APIS, params);
         });
     }
     CheckApiMembership(aid) {

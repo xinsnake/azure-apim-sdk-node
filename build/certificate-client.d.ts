@@ -7,7 +7,7 @@ export declare class CertificateClient {
     constructor(_credentials: Credentials);
     GetAll(filter?: string, top?: number, skip?: number): Promise<Certificate[]>;
     Get(cid: string): Promise<Certificate>;
-    GetMeta(cid: string): Promise<string>;
+    GetMeta(cid: string): Promise<number>;
     Upsert(cid: string, ifMatch: string, payload: Certificate): Promise<void>;
     Delete(cid: string, ifMatch: string): Promise<void>;
 }

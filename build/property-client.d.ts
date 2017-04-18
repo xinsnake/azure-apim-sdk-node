@@ -7,7 +7,7 @@ export declare class PropertyClient {
     constructor(_credentials: Credentials);
     GetAll(filter?: string, top?: number, skip?: number): Promise<Property[]>;
     Get(propId: string): Promise<Property>;
-    GetMeta(propId: string): Promise<string>;
+    GetMeta(propId: string): Promise<number>;
     Create(propId: string, payload: Property | string): Promise<void>;
     Update(propId: string, ifMatch: string, payload: Property): Promise<void>;
     Delete(propId: string, ifMatch: string): Promise<void>;

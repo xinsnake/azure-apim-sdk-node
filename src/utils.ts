@@ -1,5 +1,3 @@
-/// <reference path="../typings/index.d.ts"/>
-
 import {Collection} from './representation';
 import * as crypto from 'crypto';
 import * as request from "request";
@@ -94,14 +92,16 @@ export class HttpHelper {
         });
     }
 
-    public async Head(path: string): Promise<string> {
-        let options: request.CoreOptions & request.UriOptions = {
+    public async Head(path: string): Promise<number> {
+        let options: requestp.RequestPromiseOptions & request.UriOptions = {
             uri: this.prepareUri(path),
             baseUrl: this.credentials.serviceUri,
-            headers: this.prepareHeaders()
+            headers: this.prepareHeaders(),
+            simple: false,
+            resolveWithFullResponse: true
         };
-        return requestp.head(options).then((value) => {
-            return value.etag
+        return requestp.head(options).then((response) => {
+            return parseInt(response.statusCode);
         });
     }
 

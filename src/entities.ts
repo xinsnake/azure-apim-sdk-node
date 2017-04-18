@@ -112,7 +112,7 @@ export class Product extends GenericEntity {
 
     public async ListApis(filter?: string, top?: number, skip?: number) {
         let params = {'$filter': filter, '$top': top, '$skip': skip};
-        return await this.httpHelper.GetCollection<Api>(Api, this.PATH_PRODUCTS + this.PATH_APIS, params);
+        return await this.httpHelper.GetCollection<Api>(Api, this.id + this.PATH_APIS, params);
     }
 
     public async CheckApiMembership(aid: string) {

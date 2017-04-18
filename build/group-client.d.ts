@@ -7,7 +7,7 @@ export declare class GroupClient {
     constructor(_credentials: Credentials);
     GetAll(filter?: string, top?: number, skip?: number): Promise<Group[]>;
     Get(gid: string): Promise<Group>;
-    GetMeta(gid: string): Promise<string>;
+    GetMeta(gid: string): Promise<number>;
     Create(gid: string, payload: Group | string): Promise<void>;
     Update(gid: string, ifMatch: string, payload: Group): Promise<void>;
     Delete(gid: string, ifMatch: string): Promise<void>;

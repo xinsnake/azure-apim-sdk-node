@@ -94,7 +94,7 @@ export declare class Product extends GenericEntity {
     private readonly PATH_PRODUCTS;
     private readonly PATH_APIS;
     ListApis(filter?: string, top?: number, skip?: number): Promise<Api[]>;
-    CheckApiMembership(aid: string): Promise<string>;
+    CheckApiMembership(aid: string): Promise<number>;
     AddApi(aid: string): Promise<void>;
     RemoveApi(aid: string): Promise<void>;
 }
