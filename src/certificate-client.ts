@@ -15,11 +15,11 @@ export class CertificateClient {
 
     public async GetAll(filter?: string, top?: number, skip?: number) {
         let params = {'$filter': filter, '$top': top, '$skip': skip};
-        return await this.httpHelper.Get<Collection<Certificate>>(this.PATH_CERTIFICATES, params);
+        return await this.httpHelper.GetCollection<Certificate>(Certificate, this.PATH_CERTIFICATES, params);
     }
 
     public async Get(cid: string) {
-        return await this.httpHelper.Get<Certificate>(cid);
+        return await this.httpHelper.Get<Certificate>(Certificate, cid);
     }
 
     public async GetMeta(cid: string) {

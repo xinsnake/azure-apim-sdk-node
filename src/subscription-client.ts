@@ -15,11 +15,11 @@ export class SubscriptionClient {
 
     public async GetAll(filter?: string, top?: number, skip?: number) {
         let params = {'$filter': filter, '$top': top, '$skip': skip};
-        return await this.httpHelper.Get<Collection<Subscription>>(this.PATH_SUBSCRIPTIONS, params);
+        return await this.httpHelper.GetCollection<Subscription>(Subscription, this.PATH_SUBSCRIPTIONS, params);
     }
 
     public async Get(sid: string) {
-        return await this.httpHelper.Get<Subscription>(sid);
+        return await this.httpHelper.Get<Subscription>(Subscription, sid);
     }
 
     public async GetMeta(sid: string) {

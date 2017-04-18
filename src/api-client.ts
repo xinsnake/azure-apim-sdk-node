@@ -15,13 +15,13 @@ export class ApiClient {
 
     public async GetAll(filter?: string, top?: number, skip?: number) {
         let params = {'$filter': filter, '$top': top, '$skip': skip};
-        return await this.httpHelper.Get<Collection<Api>>(this.PATH_APIS, params);
+        return await this.httpHelper.GetCollection<Api>(Api, this.PATH_APIS, params);
     }
 
     public async Get(aid: string, accept?: string, isExport?: boolean) {
         let params = {'export': isExport};
         let headers = {'Accept': accept}
-        return await this.httpHelper.Get<Api>(aid, params, headers);
+        return await this.httpHelper.Get<Api>(Api, aid, params, headers);
     }
 
     public async GetMeta(aid: string) {

@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const entities_1 = require("./entities");
 const utils_1 = require("./utils");
 class GroupClient {
     constructor(_credentials) {
@@ -18,12 +19,12 @@ class GroupClient {
     GetAll(filter, top, skip) {
         return __awaiter(this, void 0, void 0, function* () {
             let params = { '$filter': filter, '$top': top, '$skip': skip };
-            return yield this.httpHelper.Get(this.PATH_GROUPS, params);
+            return yield this.httpHelper.GetCollection(entities_1.Group, this.PATH_GROUPS, params);
         });
     }
     Get(gid) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.httpHelper.Get(gid);
+            return yield this.httpHelper.Get(entities_1.Group, gid);
         });
     }
     GetMeta(gid) {

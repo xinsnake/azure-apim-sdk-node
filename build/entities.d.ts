@@ -1,4 +1,10 @@
+import { Credentials, HttpHelper } from './utils';
 import { Collection, Parameter, HttpRequest, HttpResponse } from './representation';
+export declare class GenericEntity {
+    protected httpHelper?: HttpHelper;
+    protected credentials?: Credentials;
+    SetCredentials(_credentials: Credentials): this;
+}
 export declare class Api {
     id?: string;
     name?: string;
@@ -75,7 +81,7 @@ export declare class Operation {
     request?: HttpRequest;
     responses?: HttpResponse[];
 }
-export declare class Product {
+export declare class Product extends GenericEntity {
     id?: string;
     name?: string;
     description?: string;
@@ -85,6 +91,12 @@ export declare class Product {
     subscriptionLimit?: number;
     state?: string;
     groups?: Group[];
+    private readonly PATH_PRODUCTS;
+    private readonly PATH_APIS;
+    ListApis(filter?: string, top?: number, skip?: number): Promise<Api[]>;
+    CheckApiMembership(aid: string): Promise<string>;
+    AddApi(aid: string): Promise<void>;
+    RemoveApi(aid: string): Promise<void>;
 }
 export declare class Property {
     id?: string;

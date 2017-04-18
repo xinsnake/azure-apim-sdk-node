@@ -15,11 +15,11 @@ export class BackendClient {
 
     public async GetAll(filter?: string, top?: number, skip?: number, expandGroups?: boolean) {
         let params = {'$filter': filter, '$top': top, '$skip': skip, 'expandGroups': expandGroups};
-        return await this.httpHelper.Get<Collection<Backend>>(this.PATH_BACKENDS, params);
+        return await this.httpHelper.GetCollection<Backend>(Backend, this.PATH_BACKENDS, params);
     }
 
     public async Get(backendId: string) {
-        return await this.httpHelper.Get<Backend>(backendId);
+        return await this.httpHelper.Get<Backend>(Backend, backendId);
     }
 
     public async GetMeta(backendId: string) {

@@ -1,4 +1,16 @@
+import {Credentials, HttpHelper} from './utils';
 import {Collection, Parameter, HttpRequest, HttpResponse} from './representation';
+
+export class GenericEntity {
+    protected httpHelper?: HttpHelper;
+    protected credentials?: Credentials;
+
+    public SetCredentials(_credentials: Credentials) {
+        this.credentials = _credentials;
+        this.httpHelper = new HttpHelper(this.credentials);
+        return this;
+    }
+}
 
 export class Api {
     public id?: string;
@@ -84,7 +96,7 @@ export class Operation {
     public responses?: HttpResponse[];
 }
 
-export class Product {
+export class Product extends GenericEntity {
     public id?: string;
     public name?: string;
     public description?: string;
@@ -94,6 +106,26 @@ export class Product {
     public subscriptionLimit?: number;
     public state?: string;
     public groups?: Group[];
+
+    private readonly PATH_PRODUCTS = '/products';
+    private readonly PATH_APIS = '/apis';
+
+    public async ListApis(filter?: string, top?: number, skip?: number) {
+        let params = {'$filter': filter, '$top': top, '$skip': skip};
+        return await this.httpHelper.GetCollection<Api>(Api, this.PATH_PRODUCTS + this.PATH_APIS, params);
+    }
+
+    public async CheckApiMembership(aid: string) {
+        return await this.httpHelper.Head(this.id + aid);
+    }
+
+    public async AddApi(aid: string) {
+        return await this.httpHelper.Put(this.id + aid);
+    }
+
+    public async RemoveApi(aid: string) {
+        return await this.httpHelper.Delete(this.id + aid);
+    }
 }
 
 export class Property {

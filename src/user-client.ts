@@ -15,11 +15,11 @@ export class UserClient {
 
     public async GetAll(filter?: string, top?: number, skip?: number, expandGroups?: boolean) {
         let params = {'$filter': filter, '$top': top, '$skip': skip, 'expandGroups': expandGroups};
-        return await this.httpHelper.Get<Collection<User>>(this.PATH_USERS, params);
+        return await this.httpHelper.GetCollection<User>(User, this.PATH_USERS, params);
     }
 
     public async Get(uid: string) {
-        return await this.httpHelper.Get<User>(uid);
+        return await this.httpHelper.Get<User>(User, uid);
     }
 
     public async GetMeta(uid: string) {

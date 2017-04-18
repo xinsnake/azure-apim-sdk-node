@@ -1,12 +1,11 @@
 import { User } from './entities';
-import { Collection } from './representation';
 import { Credentials } from './utils';
 export declare class UserClient {
     private readonly PATH_USERS;
     private credentials;
     private httpHelper;
     constructor(_credentials: Credentials);
-    GetAll(filter?: string, top?: number, skip?: number, expandGroups?: boolean): Promise<Collection<User>>;
+    GetAll(filter?: string, top?: number, skip?: number, expandGroups?: boolean): Promise<User[]>;
     Get(uid: string): Promise<User>;
     GetMeta(uid: string): Promise<string>;
     Create(uid: string, payload: User | string): Promise<void>;

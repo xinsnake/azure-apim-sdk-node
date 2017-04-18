@@ -15,11 +15,11 @@ export class GroupClient {
 
     public async GetAll(filter?: string, top?: number, skip?: number) {
         let params = {'$filter': filter, '$top': top, '$skip': skip};
-        return await this.httpHelper.Get<Collection<Group>>(this.PATH_GROUPS, params);
+        return await this.httpHelper.GetCollection<Group>(Group, this.PATH_GROUPS, params);
     }
 
     public async Get(gid: string) {
-        return await this.httpHelper.Get<Group>(gid);
+        return await this.httpHelper.Get<Group>(Group, gid);
     }
 
     public async GetMeta(gid: string) {

@@ -15,11 +15,11 @@ export class LoggerClient {
 
     public async GetAll(filter?: string, top?: number, skip?: number) {
         let params = {'$filter': filter, '$top': top, '$skip': skip};
-        return await this.httpHelper.Get<Collection<Logger>>(this.PATH_LOGGERS, params);
+        return await this.httpHelper.GetCollection<Logger>(Logger, this.PATH_LOGGERS, params);
     }
 
     public async Get(loggerId: string) {
-        return await this.httpHelper.Get<Logger>(loggerId);
+        return await this.httpHelper.Get<Logger>(Logger, loggerId);
     }
 
     public async GetMeta(loggerId: string) {

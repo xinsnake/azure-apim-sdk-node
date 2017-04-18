@@ -15,11 +15,16 @@ export class ProductClient {
 
     public async GetAll(filter?: string, top?: number, skip?: number, expandGroups?: boolean) {
         let params = {'$filter': filter, '$top': top, '$skip': skip, 'expandGroups': expandGroups};
-        return await this.httpHelper.Get<Collection<Product>>(this.PATH_PRODUCTS, params);
+        let products = await this.httpHelper.GetCollection<Product>(Product, this.PATH_PRODUCTS, params);
+        products.forEach((product) => {
+            product.SetCredentials(this.credentials);
+        });
+        return products;
     }
 
     public async Get(pid: string) {
-        return await this.httpHelper.Get<Product>(pid);
+        let product = await this.httpHelper.Get<Product>(Product, pid);
+        return product.SetCredentials(this.credentials);
     }
 
     public async GetMeta(pid: string) {

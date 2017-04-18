@@ -18,7 +18,12 @@ export declare class HttpHelper {
     private readonly VERSION;
     private credentials;
     constructor(_credentials: Credentials);
-    Get<T>(path: string, params?: any, headers?: any): Promise<T>;
+    GetCollection<T>(type: {
+        new (): T;
+    }, path: string, params?: any, headers?: any): Promise<T[]>;
+    Get<T>(type: {
+        new (): T;
+    }, path: string, params?: any, headers?: any): Promise<T>;
     Head(path: string): Promise<string>;
     Put(path: string, params?: any, headers?: any, payload?: any): Promise<void>;
     Patch(path: string, params?: any, headers?: any, payload?: any): Promise<void>;
@@ -26,4 +31,9 @@ export declare class HttpHelper {
     private prepareUri(path, params?);
     private prepareParams(params?);
     private prepareHeaders(headers?);
+}
+export declare class ObjectFactory {
+    static Create<T>(type: {
+        new (): T;
+    }): T;
 }

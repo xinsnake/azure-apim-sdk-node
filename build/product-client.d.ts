@@ -1,12 +1,11 @@
 import { Product } from './entities';
-import { Collection } from './representation';
 import { Credentials } from './utils';
 export declare class ProductClient {
     private readonly PATH_PRODUCTS;
     private credentials;
     private httpHelper;
     constructor(_credentials: Credentials);
-    GetAll(filter?: string, top?: number, skip?: number, expandGroups?: boolean): Promise<Collection<Product>>;
+    GetAll(filter?: string, top?: number, skip?: number, expandGroups?: boolean): Promise<Product[]>;
     Get(pid: string): Promise<Product>;
     GetMeta(pid: string): Promise<string>;
     Create(pid: string, payload: Product | string): Promise<void>;

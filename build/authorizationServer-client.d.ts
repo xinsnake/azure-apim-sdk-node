@@ -1,12 +1,11 @@
 import { AuthorizationServer } from './entities';
-import { Collection } from './representation';
 import { Credentials } from './utils';
 export declare class AuthorizationServerClient {
     private readonly PATH_AUTHORIZATION_SERVERS;
     private credentials;
     private httpHelper;
     constructor(_credentials: Credentials);
-    GetAll(filter?: string, top?: number, skip?: number): Promise<Collection<AuthorizationServer>>;
+    GetAll(filter?: string, top?: number, skip?: number): Promise<AuthorizationServer[]>;
     Get(authsid: string): Promise<AuthorizationServer>;
     GetMeta(authsid: string): Promise<string>;
     Create(authsid: string, payload: AuthorizationServer | string): Promise<void>;

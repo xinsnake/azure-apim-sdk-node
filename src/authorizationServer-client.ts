@@ -15,11 +15,11 @@ export class AuthorizationServerClient {
 
     public async GetAll(filter?: string, top?: number, skip?: number) {
         let params = {'$filter': filter, '$top': top, '$skip': skip};
-        return await this.httpHelper.Get<Collection<AuthorizationServer>>(this.PATH_AUTHORIZATION_SERVERS, params);
+        return await this.httpHelper.GetCollection<AuthorizationServer>(AuthorizationServer, this.PATH_AUTHORIZATION_SERVERS, params);
     }
 
     public async Get(authsid: string) {
-        return await this.httpHelper.Get<AuthorizationServer>(authsid);
+        return await this.httpHelper.Get<AuthorizationServer>(AuthorizationServer, authsid);
     }
 
     public async GetMeta(authsid: string) {

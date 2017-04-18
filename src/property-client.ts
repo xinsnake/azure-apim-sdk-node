@@ -15,11 +15,11 @@ export class PropertyClient {
 
     public async GetAll(filter?: string, top?: number, skip?: number) {
         let params = {'$filter': filter, '$top': top, '$skip': skip};
-        return await this.httpHelper.Get<Collection<Property>>(this.PATH_PROPERTIES, params);
+        return await this.httpHelper.GetCollection<Property>(Property, this.PATH_PROPERTIES, params);
     }
 
     public async Get(propId: string) {
-        return await this.httpHelper.Get<Property>(propId);
+        return await this.httpHelper.Get<Property>(Property, propId);
     }
 
     public async GetMeta(propId: string) {

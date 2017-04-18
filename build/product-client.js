@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const entities_1 = require("./entities");
 const utils_1 = require("./utils");
 class ProductClient {
     constructor(_credentials) {
@@ -18,12 +19,17 @@ class ProductClient {
     GetAll(filter, top, skip, expandGroups) {
         return __awaiter(this, void 0, void 0, function* () {
             let params = { '$filter': filter, '$top': top, '$skip': skip, 'expandGroups': expandGroups };
-            return yield this.httpHelper.Get(this.PATH_PRODUCTS, params);
+            let products = yield this.httpHelper.GetCollection(entities_1.Product, this.PATH_PRODUCTS, params);
+            products.forEach((product) => {
+                product.SetCredentials(this.credentials);
+            });
+            return products;
         });
     }
     Get(pid) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.httpHelper.Get(pid);
+            let product = yield this.httpHelper.Get(entities_1.Product, pid);
+            return product.SetCredentials(this.credentials);
         });
     }
     GetMeta(pid) {

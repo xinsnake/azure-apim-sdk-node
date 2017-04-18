@@ -1,5 +1,6 @@
 /// <reference path="../typings/index.d.ts"/>
 
+import {Collection} from './representation';
 import * as crypto from 'crypto';
 import * as request from "request";
 import * as requestp from "request-promise-native";
@@ -62,13 +63,35 @@ export class HttpHelper {
         this.credentials = _credentials;
     }
 
-    public async Get<T>(path: string, params?: any, headers?: any): Promise<T> {
+    public async GetCollection<T>(type: {new(): T}, path: string, params?: any, headers?: any): Promise<T[]> {
         let options: request.CoreOptions & request.UriOptions = {
             uri: this.prepareUri(path, params),
             baseUrl: this.credentials.serviceUri,
             headers: this.prepareHeaders(headers)
         };
-        return requestp.get(options).then<T>((value) => {return <T> JSON.parse(value)});
+        return requestp.get(options).then<T[]>((value) => {
+            // TODO deal with multiple pages
+            let objs = JSON.parse(value) as Collection<T>;
+            let responses: T[] = [];
+            for (let i = 0; i < objs.value.length; i++) {
+                let c = new type();
+                responses.push(Object.assign(c, objs.value[i]));
+            }
+            return responses;
+        });
+    }
+
+    public async Get<T>(type: {new(): T}, path: string, params?: any, headers?: any): Promise<T> {
+        let options: request.CoreOptions & request.UriOptions = {
+            uri: this.prepareUri(path, params),
+            baseUrl: this.credentials.serviceUri,
+            headers: this.prepareHeaders(headers)
+        };
+        return requestp.get(options).then<T>((value) => {
+            let c = new type();
+            let obj = JSON.parse(value);
+            return Object.assign(c, obj);
+        });
     }
 
     public async Head(path: string): Promise<string> {
@@ -77,7 +100,9 @@ export class HttpHelper {
             baseUrl: this.credentials.serviceUri,
             headers: this.prepareHeaders()
         };
-        return requestp.head(options).then((value) => {return value.etag});
+        return requestp.head(options).then((value) => {
+            return value.etag
+        });
     }
 
     public async Put(path: string, params?: any, headers?: any, payload?: any): Promise<void> {
@@ -140,5 +165,11 @@ export class HttpHelper {
         let auth = new Authentication();
         headers['Authorization'] = auth.getAuthorizationHeader(this.credentials);
         return headers;
+    }
+}
+
+export class ObjectFactory {
+    public static Create<T>(type: {new(): T; }): T {
+        return new type();
     }
 }

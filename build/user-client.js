@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const entities_1 = require("./entities");
 const utils_1 = require("./utils");
 class UserClient {
     constructor(_credentials) {
@@ -18,12 +19,12 @@ class UserClient {
     GetAll(filter, top, skip, expandGroups) {
         return __awaiter(this, void 0, void 0, function* () {
             let params = { '$filter': filter, '$top': top, '$skip': skip, 'expandGroups': expandGroups };
-            return yield this.httpHelper.Get(this.PATH_USERS, params);
+            return yield this.httpHelper.GetCollection(entities_1.User, this.PATH_USERS, params);
         });
     }
     Get(uid) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.httpHelper.Get(uid);
+            return yield this.httpHelper.Get(entities_1.User, uid);
         });
     }
     GetMeta(uid) {

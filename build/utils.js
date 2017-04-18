@@ -49,14 +49,36 @@ class HttpHelper {
         this.VERSION = '2016-07-07';
         this.credentials = _credentials;
     }
-    Get(path, params, headers) {
+    GetCollection(type, path, params, headers) {
         return __awaiter(this, void 0, void 0, function* () {
             let options = {
                 uri: this.prepareUri(path, params),
                 baseUrl: this.credentials.serviceUri,
                 headers: this.prepareHeaders(headers)
             };
-            return requestp.get(options).then((value) => { return JSON.parse(value); });
+            return requestp.get(options).then((value) => {
+                let objs = JSON.parse(value);
+                let responses = [];
+                for (let i = 0; i < objs.value.length; i++) {
+                    let c = new type();
+                    responses.push(Object.assign(c, objs.value[i]));
+                }
+                return responses;
+            });
+        });
+    }
+    Get(type, path, params, headers) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let options = {
+                uri: this.prepareUri(path, params),
+                baseUrl: this.credentials.serviceUri,
+                headers: this.prepareHeaders(headers)
+            };
+            return requestp.get(options).then((value) => {
+                let c = new type();
+                let obj = JSON.parse(value);
+                return Object.assign(c, obj);
+            });
         });
     }
     Head(path) {
@@ -66,7 +88,9 @@ class HttpHelper {
                 baseUrl: this.credentials.serviceUri,
                 headers: this.prepareHeaders()
             };
-            return requestp.head(options).then((value) => { return value.etag; });
+            return requestp.head(options).then((value) => {
+                return value.etag;
+            });
         });
     }
     Put(path, params, headers, payload) {
@@ -131,3 +155,9 @@ class HttpHelper {
     }
 }
 exports.HttpHelper = HttpHelper;
+class ObjectFactory {
+    static Create(type) {
+        return new type();
+    }
+}
+exports.ObjectFactory = ObjectFactory;

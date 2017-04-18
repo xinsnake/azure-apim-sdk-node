@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const entities_1 = require("./entities");
 const utils_1 = require("./utils");
 class SubscriptionClient {
     constructor(_credentials) {
@@ -18,12 +19,12 @@ class SubscriptionClient {
     GetAll(filter, top, skip) {
         return __awaiter(this, void 0, void 0, function* () {
             let params = { '$filter': filter, '$top': top, '$skip': skip };
-            return yield this.httpHelper.Get(this.PATH_SUBSCRIPTIONS, params);
+            return yield this.httpHelper.GetCollection(entities_1.Subscription, this.PATH_SUBSCRIPTIONS, params);
         });
     }
     Get(sid) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.httpHelper.Get(sid);
+            return yield this.httpHelper.Get(entities_1.Subscription, sid);
         });
     }
     GetMeta(sid) {

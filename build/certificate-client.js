@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const entities_1 = require("./entities");
 const utils_1 = require("./utils");
 class CertificateClient {
     constructor(_credentials) {
@@ -18,12 +19,12 @@ class CertificateClient {
     GetAll(filter, top, skip) {
         return __awaiter(this, void 0, void 0, function* () {
             let params = { '$filter': filter, '$top': top, '$skip': skip };
-            return yield this.httpHelper.Get(this.PATH_CERTIFICATES, params);
+            return yield this.httpHelper.GetCollection(entities_1.Certificate, this.PATH_CERTIFICATES, params);
         });
     }
     Get(cid) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.httpHelper.Get(cid);
+            return yield this.httpHelper.Get(entities_1.Certificate, cid);
         });
     }
     GetMeta(cid) {
