@@ -51,6 +51,7 @@ export class Backend {
     public id?: string;
     public host?: string;
     public skipCertificateChainValidation?: boolean;
+    public skipCertificateNameValidation?: boolean;
 }
 
 export class Certificate {

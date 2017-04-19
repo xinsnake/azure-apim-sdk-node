@@ -153,6 +153,7 @@ class HttpHelper {
         }
         let auth = new Authentication();
         headers['Authorization'] = auth.getAuthorizationHeader(this.credentials);
+        headers['Content-Type'] = 'application/json';
         return headers;
     }
 }

@@ -41,6 +41,7 @@ export declare class Backend {
     id?: string;
     host?: string;
     skipCertificateChainValidation?: boolean;
+    skipCertificateNameValidation?: boolean;
 }
 export declare class Certificate {
     id?: string;
