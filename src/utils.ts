@@ -23,11 +23,11 @@ export class Authentication {
         let expireTime = new Date(currentTime.getTime() + this.TIME_TO_EXPIRE);
         let expireTimeISOString = expireTime.toISOString().replace('Z', '0000Z');
         let signature = this.generateSignature(expireTimeISOString);
-        
+
         this.expireTime = expireTime;
         this.headerCache = `SharedAccessSignature uid=${this.credentials.identifier}` +
             `&ex=${expireTimeISOString}&sn=${signature}`;
-        
+
         return this.headerCache;
     }
 
@@ -164,7 +164,7 @@ export class HttpHelper {
 
         let auth = new Authentication();
         headers['Authorization'] = auth.getAuthorizationHeader(this.credentials);
-        headers['Content-Type'] = 'application/json';
+        headers['Content-Type'] = headers['Content-Type'] || 'application/json';
         return headers;
     }
 }
