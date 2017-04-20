@@ -8,8 +8,8 @@ export declare class ApiClient {
     GetAll(filter?: string, top?: number, skip?: number): Promise<Api[]>;
     Get(aid: string, accept?: string, isExport?: boolean): Promise<Api>;
     GetMeta(aid: string): Promise<number>;
-    CreateOrImport(aid: string, contentType: string, isImport: boolean, path: string, payload: Api | ImportLink | string): Promise<void>;
-    UpdateViaImport(aid: string, ifMatch: string, contentType: string, payload: Api | ImportLink | string): Promise<void>;
-    Update(aid: string, ifMatch: string, payload: Api): Promise<void>;
+    CreateOrImport(aid: string, contentType: string, isImport: boolean, path: string, payload: Api | ImportLink | string): Promise<any>;
+    UpdateViaImport(aid: string, ifMatch: string, contentType: string, payload: Api | ImportLink | string): Promise<any>;
+    Update(aid: string, ifMatch: string, payload: Api): Promise<any>;
     Delete(aid: string, ifMatch: string): Promise<void>;
 }

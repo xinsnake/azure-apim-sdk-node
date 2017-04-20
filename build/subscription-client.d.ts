@@ -8,7 +8,7 @@ export declare class SubscriptionClient {
     GetAll(filter?: string, top?: number, skip?: number): Promise<Subscription[]>;
     Get(sid: string): Promise<Subscription>;
     GetMeta(sid: string): Promise<number>;
-    Create(sid: string, payload: Subscription | string): Promise<void>;
-    Update(sid: string, ifMatch: string, payload: Subscription): Promise<void>;
+    Create(sid: string, payload: Subscription | string): Promise<any>;
+    Update(sid: string, ifMatch: string, payload: Subscription): Promise<any>;
     Delete(sid: string, ifMatch: string): Promise<void>;
 }

@@ -54,7 +54,7 @@ export class Credentials {
 
 export class HttpHelper {
 
-    private readonly VERSION = '2016-07-07';
+    private readonly VERSION = '2016-10-10';
     private credentials: Credentials;
 
     constructor(_credentials: Credentials) {
@@ -105,7 +105,17 @@ export class HttpHelper {
         });
     }
 
-    public async Put(path: string, params?: any, headers?: any, payload?: any): Promise<void> {
+    public async Post(path: string, params?: any, headers?: any, payload?: any): Promise<any> {
+        let options: request.CoreOptions & request.UriOptions = {
+            uri: this.prepareUri(path, params),
+            baseUrl: this.credentials.serviceUri,
+            headers: this.prepareHeaders(headers),
+            body: JSON.stringify(payload)
+        };
+        return requestp.post(options);
+    }
+
+    public async Put(path: string, params?: any, headers?: any, payload?: any): Promise<any> {
         let options: request.CoreOptions & request.UriOptions = {
             uri: this.prepareUri(path, params),
             baseUrl: this.credentials.serviceUri,
@@ -115,7 +125,7 @@ export class HttpHelper {
         return requestp.put(options);
     }
 
-    public async Patch(path: string, params?: any, headers?: any, payload?: any): Promise<void> {
+    public async Patch(path: string, params?: any, headers?: any, payload?: any): Promise<any> {
         let options: request.CoreOptions & request.UriOptions = {
             uri: this.prepareUri(path, params),
             baseUrl: this.credentials.serviceUri,
@@ -166,11 +176,5 @@ export class HttpHelper {
         headers['Authorization'] = auth.getAuthorizationHeader(this.credentials);
         headers['Content-Type'] = headers['Content-Type'] || 'application/json';
         return headers;
-    }
-}
-
-export class ObjectFactory {
-    public static Create<T>(type: {new(): T; }): T {
-        return new type();
     }
 }

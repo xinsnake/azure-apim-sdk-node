@@ -24,7 +24,7 @@
 * Set policy on an API
 * Remove policy configuration from an API
 
-## Authorization ​Server entity
+## ✔ Authorization ​Server entity
 
 * ✔ Get a list of authorization servers
 * ✔ Get a specific authorization server
@@ -33,7 +33,7 @@
 * ✔ Update an authorization server
 * ✔ Delete an authorization server
 
-## Backend entity
+## ✔ Backend entity
 
 * ✔ List backend services
 * ✔ Get a specific backend
@@ -42,7 +42,7 @@
 * ✔ Update a backend
 * ✔ Delete a backend
 
-## Certificate entity
+## ✔ Certificate entity
 
 * ✔ Get a list of all certificates
 * ✔ Get a certificate
@@ -50,7 +50,7 @@
 * ✔ Add or update a certificate
 * ✔ Remove a certificate
 
-## Group entity
+## ✔ Group entity
 
 * ✔ Get a list of all groups
 * ✔ Get a specific group
@@ -58,12 +58,12 @@
 * ✔ Create a new group
 * ✔ Update an existing group
 * ✔ Delete a group
-* List group members
-* Add a member to a group
-* Remove a member from a group
-* Check membership in a group
+* ✔ List group members
+* ✔ Add a member to a group
+* ✔ Remove a member from a group
+* ✔ Check membership in a group
 
-## Logger entity
+## ✔ Logger entity
 
 * ✔ List loggers
 * ✔ Get a specific logger
@@ -93,7 +93,7 @@
 * Associate a developer group with a product
 * Delete a developer group association with a product
 
-## Property ​entity
+## ✔ Property ​entity
 
 * ✔ Get a list of all properties
 * ✔ Get a specific property
@@ -113,7 +113,7 @@
 * Get metrics aggregated by subscription
 * Get request log entries
 
-## Subscription entity
+## ✔ Subscription entity
 
 * ✔ Get a list of all subscriptions
 * ✔ Get subscription details
@@ -121,8 +121,8 @@
 * ✔ Subscribe a user to a product
 * ✔ Update subscription details
 * ✔ Delete a subscription
-* Regenerate subscription primary key
-* Regenerate subscription secondary key
+* ✔ Regenerate subscription primary key
+* ✔ Regenerate subscription secondary key
 
 ## Tenant entity
 
@@ -142,13 +142,13 @@
 * Validate Git changes
 * Get the status of the latest synchronization
 
-## User entity
+## ✔ User entity
 
 * ✔ Get a specific user
 * ✔ Get the metadata for a specific user
 * ✔ Create a new user
 * ✔ Update a user
 * ✔ Delete a user
-* List developer groups associated with a user
-* List subscriptions for a specific user
-* Get single sign-on URL for a user
+* ✔ List developer groups associated with a user
+* ✔ List subscriptions for a specific user
+* ✔ Get single sign-on URL for a user

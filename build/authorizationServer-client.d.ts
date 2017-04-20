@@ -8,7 +8,7 @@ export declare class AuthorizationServerClient {
     GetAll(filter?: string, top?: number, skip?: number): Promise<AuthorizationServer[]>;
     Get(authsid: string): Promise<AuthorizationServer>;
     GetMeta(authsid: string): Promise<number>;
-    Create(authsid: string, payload: AuthorizationServer | string): Promise<void>;
-    Update(authsid: string, ifMatch: string, payload: AuthorizationServer): Promise<void>;
+    Create(authsid: string, payload: AuthorizationServer | string): Promise<any>;
+    Update(authsid: string, ifMatch: string, payload: AuthorizationServer): Promise<any>;
     Delete(authsid: string, ifMatch: string): Promise<void>;
 }

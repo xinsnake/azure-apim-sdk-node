@@ -63,13 +63,32 @@ export class Certificate {
     public password?: string;
 }
 
-export class Group {
+export class Group extends GenericEntity {
     public id?: string;
     public name?: string;
     public description?: string;
     public builtIn?: boolean;
     public type?: string;
     public externalId?: string;
+
+    private readonly PATH_USERS = '/users';
+
+    public async ListUsers(filter?: string, top?: number, skip?: number) {
+        let params = {'$filter': filter, '$top': top, '$skip': skip};
+        return await this.httpHelper.GetCollection<User>(User, this.id + this.PATH_USERS, params);
+    }
+
+    public async AddUser(uid: string) {
+        return await this.httpHelper.Put(this.id + uid);
+    }
+
+    public async RemoveUser(uid: string) {
+        return await this.httpHelper.Delete(this.id + uid);
+    }
+
+    public async CheckUserMembership(uid: string) {
+        return await this.httpHelper.Head(this.id + uid);
+    }
 }
 
 export class Logger {
@@ -108,7 +127,6 @@ export class Product extends GenericEntity {
     public state?: string;
     public groups?: Group[];
 
-    private readonly PATH_PRODUCTS = '/products';
     private readonly PATH_APIS = '/apis';
 
     public async ListApis(filter?: string, top?: number, skip?: number) {
@@ -166,7 +184,7 @@ export class Report {
     public serviceTimeMax?: number;
 }
 
-export class Subscription {
+export class Subscription extends GenericEntity {
     public id?: string;
     public userId?: string;
     public productId?: string;
@@ -180,9 +198,17 @@ export class Subscription {
     public primaryKey?: string;
     public secondaryKey?: string;
     public stateComment?: string;
+
+    public async RegeneratePrimaryKey() {
+        return await this.httpHelper.Post(`${this.id}/regeneratePrimaryKey`);
+    }
+
+    public async RegenerateSecondaryKey() {
+        return await this.httpHelper.Post(`${this.id}/regenerateSecondaryKey`);
+    }
 }
 
-export class User {
+export class User extends GenericEntity {
     public id?: string;
     public firstName?: string;
     public lastName?: string;
@@ -192,4 +218,21 @@ export class User {
     public registrationDate?: Date;
     public note?: string;
     public groups?: Collection<Group>;
+
+    private readonly PATH_GROUPS = '/groups';
+    private readonly PATH_SUBSCRIPTIONS = '/subscriptions';
+
+    public async ListGroups(filter?: string, top?: number, skip?: number) {
+        let params = {'$filter': filter, '$top': top, '$skip': skip};
+        return await this.httpHelper.GetCollection<Group>(Group, this.id + this.PATH_GROUPS, params);
+    }
+
+    public async ListSubscriptions(filter?: string, top?: number, skip?: number) {
+        let params = {'$filter': filter, '$top': top, '$skip': skip};
+        return await this.httpHelper.GetCollection<Subscription>(Subscription, this.id + this.PATH_SUBSCRIPTIONS, params);
+    }
+
+    public async GettSingleSignOnUrl() {
+        return await this.httpHelper.Post(`${this.id}/generateSsoUrl`);        
+    }
 }

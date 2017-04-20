@@ -8,7 +8,7 @@ export declare class GroupClient {
     GetAll(filter?: string, top?: number, skip?: number): Promise<Group[]>;
     Get(gid: string): Promise<Group>;
     GetMeta(gid: string): Promise<number>;
-    Create(gid: string, payload: Group | string): Promise<void>;
-    Update(gid: string, ifMatch: string, payload: Group): Promise<void>;
+    Create(gid: string, payload: Group | string): Promise<any>;
+    Update(gid: string, ifMatch: string, payload: Group): Promise<any>;
     Delete(gid: string, ifMatch: string): Promise<void>;
 }

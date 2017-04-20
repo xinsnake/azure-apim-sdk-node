@@ -24,15 +24,11 @@ export declare class HttpHelper {
         new (): T;
     }, path: string, params?: any, headers?: any): Promise<T>;
     Head(path: string): Promise<number>;
-    Put(path: string, params?: any, headers?: any, payload?: any): Promise<void>;
-    Patch(path: string, params?: any, headers?: any, payload?: any): Promise<void>;
+    Post(path: string, params?: any, headers?: any, payload?: any): Promise<any>;
+    Put(path: string, params?: any, headers?: any, payload?: any): Promise<any>;
+    Patch(path: string, params?: any, headers?: any, payload?: any): Promise<any>;
     Delete(path: string, params?: any, headers?: any): Promise<void>;
     private prepareUri(path, params?);
     private prepareParams(params?);
     private prepareHeaders(headers?);
-}
-export declare class ObjectFactory {
-    static Create<T>(type: {
-        new (): T;
-    }): T;
 }

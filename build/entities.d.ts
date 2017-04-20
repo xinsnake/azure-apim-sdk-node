@@ -51,13 +51,18 @@ export declare class Certificate {
     data?: string;
     password?: string;
 }
-export declare class Group {
+export declare class Group extends GenericEntity {
     id?: string;
     name?: string;
     description?: string;
     builtIn?: boolean;
     type?: string;
     externalId?: string;
+    private readonly PATH_USERS;
+    ListUsers(filter?: string, top?: number, skip?: number): Promise<User[]>;
+    AddUser(uid: string): Promise<any>;
+    RemoveUser(uid: string): Promise<void>;
+    CheckUserMembership(uid: string): Promise<number>;
 }
 export declare class Logger {
     id?: string;
@@ -92,11 +97,10 @@ export declare class Product extends GenericEntity {
     subscriptionLimit?: number;
     state?: string;
     groups?: Group[];
-    private readonly PATH_PRODUCTS;
     private readonly PATH_APIS;
     ListApis(filter?: string, top?: number, skip?: number): Promise<Api[]>;
     CheckApiMembership(aid: string): Promise<number>;
-    AddApi(aid: string): Promise<void>;
+    AddApi(aid: string): Promise<any>;
     RemoveApi(aid: string): Promise<void>;
 }
 export declare class Property {
@@ -134,7 +138,7 @@ export declare class Report {
     serviceTimeMin?: number;
     serviceTimeMax?: number;
 }
-export declare class Subscription {
+export declare class Subscription extends GenericEntity {
     id?: string;
     userId?: string;
     productId?: string;
@@ -148,8 +152,10 @@ export declare class Subscription {
     primaryKey?: string;
     secondaryKey?: string;
     stateComment?: string;
+    RegeneratePrimaryKey(): Promise<any>;
+    RegenerateSecondaryKey(): Promise<any>;
 }
-export declare class User {
+export declare class User extends GenericEntity {
     id?: string;
     firstName?: string;
     lastName?: string;
@@ -159,4 +165,9 @@ export declare class User {
     registrationDate?: Date;
     note?: string;
     groups?: Collection<Group>;
+    private readonly PATH_GROUPS;
+    private readonly PATH_SUBSCRIPTIONS;
+    ListGroups(filter?: string, top?: number, skip?: number): Promise<Group[]>;
+    ListSubscriptions(filter?: string, top?: number, skip?: number): Promise<Subscription[]>;
+    GettSingleSignOnUrl(): Promise<any>;
 }

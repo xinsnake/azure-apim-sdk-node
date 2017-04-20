@@ -46,7 +46,7 @@ class Credentials {
 exports.Credentials = Credentials;
 class HttpHelper {
     constructor(_credentials) {
-        this.VERSION = '2016-07-07';
+        this.VERSION = '2016-10-10';
         this.credentials = _credentials;
     }
     GetCollection(type, path, params, headers) {
@@ -93,6 +93,17 @@ class HttpHelper {
             return requestp.head(options).then((response) => {
                 return parseInt(response.statusCode);
             });
+        });
+    }
+    Post(path, params, headers, payload) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let options = {
+                uri: this.prepareUri(path, params),
+                baseUrl: this.credentials.serviceUri,
+                headers: this.prepareHeaders(headers),
+                body: JSON.stringify(payload)
+            };
+            return requestp.post(options);
         });
     }
     Put(path, params, headers, payload) {
@@ -158,9 +169,3 @@ class HttpHelper {
     }
 }
 exports.HttpHelper = HttpHelper;
-class ObjectFactory {
-    static Create(type) {
-        return new type();
-    }
-}
-exports.ObjectFactory = ObjectFactory;

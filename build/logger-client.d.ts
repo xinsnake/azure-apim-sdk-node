@@ -8,7 +8,7 @@ export declare class LoggerClient {
     GetAll(filter?: string, top?: number, skip?: number): Promise<Logger[]>;
     Get(loggerId: string): Promise<Logger>;
     GetMeta(loggerId: string): Promise<number>;
-    Create(loggerId: string, payload: Logger | string): Promise<void>;
-    Update(loggerId: string, ifMatch: string, payload: Logger): Promise<void>;
+    Create(loggerId: string, payload: Logger | string): Promise<any>;
+    Update(loggerId: string, ifMatch: string, payload: Logger): Promise<any>;
     Delete(loggerId: string, deleteSubscriptions: boolean, ifMatch: string): Promise<void>;
 }

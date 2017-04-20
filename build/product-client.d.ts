@@ -8,7 +8,7 @@ export declare class ProductClient {
     GetAll(filter?: string, top?: number, skip?: number, expandGroups?: boolean): Promise<Product[]>;
     Get(pid: string): Promise<Product>;
     GetMeta(pid: string): Promise<number>;
-    Create(pid: string, payload: Product | string): Promise<void>;
-    Update(pid: string, ifMatch: string, payload: Product): Promise<void>;
+    Create(pid: string, payload: Product | string): Promise<any>;
+    Update(pid: string, ifMatch: string, payload: Product): Promise<any>;
     Delete(pid: string, deleteSubscriptions: boolean, ifMatch: string): Promise<void>;
 }

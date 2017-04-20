@@ -32,7 +32,32 @@ exports.Backend = Backend;
 class Certificate {
 }
 exports.Certificate = Certificate;
-class Group {
+class Group extends GenericEntity {
+    constructor() {
+        super(...arguments);
+        this.PATH_USERS = '/users';
+    }
+    ListUsers(filter, top, skip) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let params = { '$filter': filter, '$top': top, '$skip': skip };
+            return yield this.httpHelper.GetCollection(User, this.id + this.PATH_USERS, params);
+        });
+    }
+    AddUser(uid) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.httpHelper.Put(this.id + uid);
+        });
+    }
+    RemoveUser(uid) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.httpHelper.Delete(this.id + uid);
+        });
+    }
+    CheckUserMembership(uid) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.httpHelper.Head(this.id + uid);
+        });
+    }
 }
 exports.Group = Group;
 class Logger {
@@ -47,7 +72,6 @@ exports.Operation = Operation;
 class Product extends GenericEntity {
     constructor() {
         super(...arguments);
-        this.PATH_PRODUCTS = '/products';
         this.PATH_APIS = '/apis';
     }
     ListApis(filter, top, skip) {
@@ -79,9 +103,41 @@ exports.Property = Property;
 class Report {
 }
 exports.Report = Report;
-class Subscription {
+class Subscription extends GenericEntity {
+    RegeneratePrimaryKey() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.httpHelper.Post(`${this.id}/regeneratePrimaryKey`);
+        });
+    }
+    RegenerateSecondaryKey() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.httpHelper.Post(`${this.id}/regenerateSecondaryKey`);
+        });
+    }
 }
 exports.Subscription = Subscription;
-class User {
+class User extends GenericEntity {
+    constructor() {
+        super(...arguments);
+        this.PATH_GROUPS = '/groups';
+        this.PATH_SUBSCRIPTIONS = '/subscriptions';
+    }
+    ListGroups(filter, top, skip) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let params = { '$filter': filter, '$top': top, '$skip': skip };
+            return yield this.httpHelper.GetCollection(Group, this.id + this.PATH_GROUPS, params);
+        });
+    }
+    ListSubscriptions(filter, top, skip) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let params = { '$filter': filter, '$top': top, '$skip': skip };
+            return yield this.httpHelper.GetCollection(Subscription, this.id + this.PATH_SUBSCRIPTIONS, params);
+        });
+    }
+    GettSingleSignOnUrl() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.httpHelper.Post(`${this.id}/generateSsoUrl`);
+        });
+    }
 }
 exports.User = User;

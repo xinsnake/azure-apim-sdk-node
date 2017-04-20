@@ -8,7 +8,7 @@ export declare class UserClient {
     GetAll(filter?: string, top?: number, skip?: number, expandGroups?: boolean): Promise<User[]>;
     Get(uid: string): Promise<User>;
     GetMeta(uid: string): Promise<number>;
-    Create(uid: string, payload: User | string): Promise<void>;
-    Update(uid: string, ifMatch: string, payload: User): Promise<void>;
+    Create(uid: string, payload: User | string): Promise<any>;
+    Update(uid: string, ifMatch: string, payload: User): Promise<any>;
     Delete(uid: string, deleteSubscriptions: boolean, ifMatch: string): Promise<void>;
 }
