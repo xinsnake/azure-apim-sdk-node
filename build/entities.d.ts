@@ -1,12 +1,19 @@
 import { Credentials, HttpHelper } from './utils';
 import { Collection, Parameter, HttpRequest, HttpResponse } from './representation';
 export declare class GenericEntity {
+    protected id?: string;
     protected httpHelper?: HttpHelper;
     protected credentials?: Credentials;
     SetCredentials(_credentials: Credentials): this;
 }
-export declare class Api {
-    id?: string;
+export declare class PolicyEntity extends GenericEntity {
+    protected readonly PATH_POLICY: string;
+    GetPolicy(): Promise<String>;
+    CheckPolicy(): Promise<number>;
+    SetPolicy(ifMatch: string, rawXml: boolean, payload: string): Promise<any>;
+    RemovePolicy(ifMatch: string): Promise<void>;
+}
+export declare class Api extends PolicyEntity {
     name?: string;
     description?: string;
     serviceUrl?: string;
@@ -52,7 +59,6 @@ export declare class Certificate {
     password?: string;
 }
 export declare class Group extends GenericEntity {
-    id?: string;
     name?: string;
     description?: string;
     builtIn?: boolean;
@@ -87,8 +93,7 @@ export declare class Operation {
     request?: HttpRequest;
     responses?: HttpResponse[];
 }
-export declare class Product extends GenericEntity {
-    id?: string;
+export declare class Product extends PolicyEntity {
     name?: string;
     description?: string;
     terms?: string;
@@ -139,7 +144,6 @@ export declare class Report {
     serviceTimeMax?: number;
 }
 export declare class Subscription extends GenericEntity {
-    id?: string;
     userId?: string;
     productId?: string;
     name?: string;
@@ -156,7 +160,6 @@ export declare class Subscription extends GenericEntity {
     RegenerateSecondaryKey(): Promise<any>;
 }
 export declare class User extends GenericEntity {
-    id?: string;
     firstName?: string;
     lastName?: string;
     password?: string;

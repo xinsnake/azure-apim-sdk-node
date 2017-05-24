@@ -22,11 +22,11 @@ export declare class HttpHelper {
     }, path: string, params?: any, headers?: any): Promise<T[]>;
     Get<T>(type: {
         new (): T;
-    }, path: string, params?: any, headers?: any): Promise<T>;
+    }, path: string, params?: any, headers?: any, raw?: boolean): Promise<T>;
     Head(path: string): Promise<number>;
-    Post(path: string, params?: any, headers?: any, payload?: any): Promise<any>;
-    Put(path: string, params?: any, headers?: any, payload?: any): Promise<any>;
-    Patch(path: string, params?: any, headers?: any, payload?: any): Promise<any>;
+    Post(path: string, params?: any, headers?: any, payload?: any, raw?: boolean): Promise<any>;
+    Put(path: string, params?: any, headers?: any, payload?: any, raw?: boolean): Promise<any>;
+    Patch(path: string, params?: any, headers?: any, payload?: any, raw?: boolean): Promise<any>;
     Delete(path: string, params?: any, headers?: any): Promise<void>;
     private prepareUri(path, params?);
     private prepareParams(params?);

@@ -19,10 +19,10 @@
 * Check for policy on an operation
 * Set policy for an operation
 * Remove policy configuration from an operation
-* Get policy for an API
-* Check for policy on an API
-* Set policy on an API
-* Remove policy configuration from an API
+* ✔ Get policy for an API
+* ✔ Check for policy on an API
+* ✔ Set policy on an API
+* ✔ Remove policy configuration from an API
 
 ## ✔ Authorization ​Server entity
 
@@ -85,10 +85,10 @@
 * ✔ Add an API to a product
 * ✔ Remove an API from a product
 * ✔ List subscriptions to a product
-* Get policy configuration for a product
-* Check a product for attached policy configuration
-* Set policy configuration for a product
-* Remove policy configuration from a product
+* ✔ Get policy configuration for a product
+* ✔ Check a product for attached policy configuration
+* ✔ Set policy configuration for a product
+* ✔ Remove policy configuration from a product
 * List developer groups associated with a product
 * Associate a developer group with a product
 * Delete a developer group association with a product

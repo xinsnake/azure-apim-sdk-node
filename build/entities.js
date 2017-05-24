@@ -17,7 +17,47 @@ class GenericEntity {
     }
 }
 exports.GenericEntity = GenericEntity;
-class Api {
+class PolicyEntity extends GenericEntity {
+    constructor() {
+        super(...arguments);
+        this.PATH_POLICY = '/policy';
+    }
+    GetPolicy() {
+        return __awaiter(this, void 0, void 0, function* () {
+            let params = {};
+            let headers = { 'Content-Type': 'application/vnd.ms-azure-apim.policy+xml' };
+            return yield this.httpHelper.Get(String, this.id + this.PATH_POLICY, params, headers, true);
+        });
+    }
+    CheckPolicy() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.httpHelper.Head(this.id + this.PATH_POLICY);
+        });
+    }
+    SetPolicy(ifMatch, rawXml, payload) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let params = {};
+            let contentType;
+            if (rawXml) {
+                contentType = 'application/vnd.ms-azure-apim.policy.raw+xml';
+            }
+            else {
+                contentType = 'application/vnd.ms-azure-apim.policy+xml';
+            }
+            let headers = { 'If-Match': ifMatch, 'Content-Type': contentType };
+            return yield this.httpHelper.Put(this.id + this.PATH_POLICY, params, headers, payload, true);
+        });
+    }
+    RemovePolicy(ifMatch) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let params = {};
+            let headers = { 'If-Match': ifMatch };
+            return yield this.httpHelper.Delete(this.id + this.PATH_POLICY, params, headers);
+        });
+    }
+}
+exports.PolicyEntity = PolicyEntity;
+class Api extends PolicyEntity {
 }
 exports.Api = Api;
 class ImportLink {
@@ -69,7 +109,7 @@ exports.OperationSummary = OperationSummary;
 class Operation {
 }
 exports.Operation = Operation;
-class Product extends GenericEntity {
+class Product extends PolicyEntity {
     constructor() {
         super(...arguments);
         this.PATH_APIS = '/apis';

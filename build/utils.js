@@ -67,7 +67,7 @@ class HttpHelper {
             });
         });
     }
-    Get(type, path, params, headers) {
+    Get(type, path, params, headers, raw) {
         return __awaiter(this, void 0, void 0, function* () {
             let options = {
                 uri: this.prepareUri(path, params),
@@ -75,6 +75,9 @@ class HttpHelper {
                 headers: this.prepareHeaders(headers)
             };
             return requestp.get(options).then((value) => {
+                if (raw) {
+                    return value;
+                }
                 let c = new type();
                 let obj = JSON.parse(value);
                 return Object.assign(c, obj);
@@ -95,35 +98,44 @@ class HttpHelper {
             });
         });
     }
-    Post(path, params, headers, payload) {
+    Post(path, params, headers, payload, raw) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (!raw) {
+                payload = JSON.stringify(payload);
+            }
             let options = {
                 uri: this.prepareUri(path, params),
                 baseUrl: this.credentials.serviceUri,
                 headers: this.prepareHeaders(headers),
-                body: JSON.stringify(payload)
+                body: payload
             };
             return requestp.post(options);
         });
     }
-    Put(path, params, headers, payload) {
+    Put(path, params, headers, payload, raw) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (!raw) {
+                payload = JSON.stringify(payload);
+            }
             let options = {
                 uri: this.prepareUri(path, params),
                 baseUrl: this.credentials.serviceUri,
                 headers: this.prepareHeaders(headers),
-                body: JSON.stringify(payload)
+                body: payload
             };
             return requestp.put(options);
         });
     }
-    Patch(path, params, headers, payload) {
+    Patch(path, params, headers, payload, raw) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (!raw) {
+                payload = JSON.stringify(payload);
+            }
             let options = {
                 uri: this.prepareUri(path, params),
                 baseUrl: this.credentials.serviceUri,
                 headers: this.prepareHeaders(headers),
-                body: JSON.stringify(payload)
+                body: payload
             };
             return requestp.patch(options);
         });

@@ -2,6 +2,7 @@ import {Credentials, HttpHelper} from './utils';
 import {Collection, Parameter, HttpRequest, HttpResponse} from './representation';
 
 export class GenericEntity {
+    protected id?: string;
     protected httpHelper?: HttpHelper;
     protected credentials?: Credentials;
 
@@ -12,8 +13,41 @@ export class GenericEntity {
     }
 }
 
-export class Api {
-    public id?: string;
+export class PolicyEntity extends GenericEntity {
+    protected readonly PATH_POLICY = '/policy';
+
+    public async GetPolicy() {
+        let params = {};
+        let headers = {'Content-Type': 'application/vnd.ms-azure-apim.policy+xml'};
+        return await this.httpHelper.Get<String>(String, this.id + this.PATH_POLICY, params, headers, true);
+    }
+
+    public async CheckPolicy() {
+        return await this.httpHelper.Head(this.id + this.PATH_POLICY);
+    }
+
+    public async SetPolicy(ifMatch: string, rawXml: boolean, payload: string) {
+        let params = {};
+
+        let contentType: string;
+        if (rawXml) {
+            contentType = 'application/vnd.ms-azure-apim.policy.raw+xml';
+        } else {
+            contentType = 'application/vnd.ms-azure-apim.policy+xml';
+        }
+        let headers = {'If-Match': ifMatch, 'Content-Type': contentType};
+
+        return await this.httpHelper.Put(this.id + this.PATH_POLICY, params, headers, payload, true);
+    }
+
+    public async RemovePolicy(ifMatch: string) {
+        let params = {};
+        let headers = {'If-Match': ifMatch};
+        return await this.httpHelper.Delete(this.id + this.PATH_POLICY, params, headers);
+    }
+}
+
+export class Api extends PolicyEntity {
     public name?: string;
     public description?: string;
     public serviceUrl?: string;
@@ -64,7 +98,6 @@ export class Certificate {
 }
 
 export class Group extends GenericEntity {
-    public id?: string;
     public name?: string;
     public description?: string;
     public builtIn?: boolean;
@@ -116,8 +149,7 @@ export class Operation {
     public responses?: HttpResponse[];
 }
 
-export class Product extends GenericEntity {
-    public id?: string;
+export class Product extends PolicyEntity {
     public name?: string;
     public description?: string;
     public terms?: string;
@@ -185,7 +217,6 @@ export class Report {
 }
 
 export class Subscription extends GenericEntity {
-    public id?: string;
     public userId?: string;
     public productId?: string;
     public name?: string;
@@ -209,7 +240,6 @@ export class Subscription extends GenericEntity {
 }
 
 export class User extends GenericEntity {
-    public id?: string;
     public firstName?: string;
     public lastName?: string;
     public password?: string;
@@ -233,6 +263,6 @@ export class User extends GenericEntity {
     }
 
     public async GettSingleSignOnUrl() {
-        return await this.httpHelper.Post(`${this.id}/generateSsoUrl`);        
+        return await this.httpHelper.Post(`${this.id}/generateSsoUrl`);
     }
 }

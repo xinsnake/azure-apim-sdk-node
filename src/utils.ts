@@ -79,13 +79,16 @@ export class HttpHelper {
         });
     }
 
-    public async Get<T>(type: {new(): T}, path: string, params?: any, headers?: any): Promise<T> {
+    public async Get<T>(type: {new(): T}, path: string, params?: any, headers?: any, raw?: boolean): Promise<T> {
         let options: request.CoreOptions & request.UriOptions = {
             uri: this.prepareUri(path, params),
             baseUrl: this.credentials.serviceUri,
             headers: this.prepareHeaders(headers)
         };
         return requestp.get(options).then<T>((value) => {
+            if (raw) {
+                return value;
+            }
             let c = new type();
             let obj = JSON.parse(value);
             return Object.assign(c, obj);
@@ -105,32 +108,41 @@ export class HttpHelper {
         });
     }
 
-    public async Post(path: string, params?: any, headers?: any, payload?: any): Promise<any> {
+    public async Post(path: string, params?: any, headers?: any, payload?: any, raw?: boolean): Promise<any> {
+        if (!raw) {
+            payload = JSON.stringify(payload)
+        }
         let options: request.CoreOptions & request.UriOptions = {
             uri: this.prepareUri(path, params),
             baseUrl: this.credentials.serviceUri,
             headers: this.prepareHeaders(headers),
-            body: JSON.stringify(payload)
+            body: payload
         };
         return requestp.post(options);
     }
 
-    public async Put(path: string, params?: any, headers?: any, payload?: any): Promise<any> {
+    public async Put(path: string, params?: any, headers?: any, payload?: any, raw?: boolean): Promise<any> {
+        if (!raw) {
+            payload = JSON.stringify(payload)
+        }
         let options: request.CoreOptions & request.UriOptions = {
             uri: this.prepareUri(path, params),
             baseUrl: this.credentials.serviceUri,
             headers: this.prepareHeaders(headers),
-            body: JSON.stringify(payload)
+            body: payload
         };
         return requestp.put(options);
     }
 
-    public async Patch(path: string, params?: any, headers?: any, payload?: any): Promise<any> {
+    public async Patch(path: string, params?: any, headers?: any, payload?: any, raw?: boolean): Promise<any> {
+        if (!raw) {
+            payload = JSON.stringify(payload)
+        }
         let options: request.CoreOptions & request.UriOptions = {
             uri: this.prepareUri(path, params),
             baseUrl: this.credentials.serviceUri,
             headers: this.prepareHeaders(headers),
-            body: JSON.stringify(payload)
+            body: payload
         };
         return requestp.patch(options);
     }
