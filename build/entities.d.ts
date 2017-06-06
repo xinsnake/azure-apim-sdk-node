@@ -1,7 +1,7 @@
 import { Credentials, HttpHelper } from './utils';
 import { Collection, Parameter, HttpRequest, HttpResponse } from './representation';
 export declare class GenericEntity {
-    protected id?: string;
+    id?: string;
     protected httpHelper?: HttpHelper;
     protected credentials?: Credentials;
     SetCredentials(_credentials: Credentials): this;

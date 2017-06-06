@@ -2,7 +2,7 @@ import {Credentials, HttpHelper} from './utils';
 import {Collection, Parameter, HttpRequest, HttpResponse} from './representation';
 
 export class GenericEntity {
-    protected id?: string;
+    public id?: string;
     protected httpHelper?: HttpHelper;
     protected credentials?: Credentials;
 
