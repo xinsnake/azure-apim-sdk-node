@@ -1,6 +1,6 @@
-import {Logger} from './entities';
-import {Collection} from './representation';
-import {Credentials, HttpHelper} from './utils';
+import {Logger} from '../entities';
+import {Collection} from '../representation';
+import {Credentials, HttpHelper} from '../utils';
 
 export class LoggerClient {
 

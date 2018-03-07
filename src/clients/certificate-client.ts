@@ -1,6 +1,6 @@
-import {Certificate} from './entities';
-import {Collection} from './representation';
-import {Credentials, HttpHelper} from './utils';
+import {Certificate} from '../entities';
+import {Collection} from '../representation';
+import {Credentials, HttpHelper} from '../utils';
 
 export class CertificateClient {
 

@@ -1,6 +1,6 @@
-import {Group} from './entities';
-import {Collection} from './representation';
-import {Credentials, HttpHelper} from './utils';
+import {Group} from '../entities';
+import {Collection} from '../representation';
+import {Credentials, HttpHelper} from '../utils';
 
 export class GroupClient {
 
