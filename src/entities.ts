@@ -1,268 +1,268 @@
-import {Credentials, HttpHelper} from './utils';
-import {Collection, Parameter, HttpRequest, HttpResponse} from './representation';
+import {Credentials, HttpHelper} from './utils'
+import {Collection, Parameter, HttpRequest, HttpResponse} from './representation'
 
 export class GenericEntity {
-    public id?: string;
-    protected httpHelper?: HttpHelper;
-    protected credentials?: Credentials;
+    public id?: string
+    protected httpHelper?: HttpHelper
+    protected credentials?: Credentials
 
     public SetCredentials(_credentials: Credentials) {
-        this.credentials = _credentials;
-        this.httpHelper = new HttpHelper(this.credentials);
-        return this;
+        this.credentials = _credentials
+        this.httpHelper = new HttpHelper(this.credentials)
+        return this
     }
 }
 
 export class PolicyEntity extends GenericEntity {
-    protected readonly PATH_POLICY = '/policy';
+    protected readonly PATH_POLICY = '/policy'
 
     public async GetPolicy() {
-        let params = {};
-        let headers = {'Content-Type': 'application/vnd.ms-azure-apim.policy+xml'};
-        return await this.httpHelper.Get<String>(String, this.id + this.PATH_POLICY, params, headers, true);
+        let params = {}
+        let headers = {'Content-Type': 'application/vnd.ms-azure-apim.policy+xml'}
+        return await this.httpHelper.Get<String>(String, this.id + this.PATH_POLICY, params, headers, true)
     }
 
     public async CheckPolicy() {
-        return await this.httpHelper.Head(this.id + this.PATH_POLICY);
+        return await this.httpHelper.Head(this.id + this.PATH_POLICY)
     }
 
     public async SetPolicy(ifMatch: string, rawXml: boolean, payload: string) {
-        let params = {};
+        let params = {}
 
-        let contentType: string;
+        let contentType: string
         if (rawXml) {
-            contentType = 'application/vnd.ms-azure-apim.policy.raw+xml';
+            contentType = 'application/vnd.ms-azure-apim.policy.raw+xml'
         } else {
-            contentType = 'application/vnd.ms-azure-apim.policy+xml';
+            contentType = 'application/vnd.ms-azure-apim.policy+xml'
         }
-        let headers = {'If-Match': ifMatch, 'Content-Type': contentType};
+        let headers = {'If-Match': ifMatch, 'Content-Type': contentType}
 
-        return await this.httpHelper.Put(this.id + this.PATH_POLICY, params, headers, payload, true);
+        return await this.httpHelper.Put(this.id + this.PATH_POLICY, params, headers, payload, true)
     }
 
     public async RemovePolicy(ifMatch: string) {
-        let params = {};
-        let headers = {'If-Match': ifMatch};
-        return await this.httpHelper.Delete(this.id + this.PATH_POLICY, params, headers);
+        let params = {}
+        let headers = {'If-Match': ifMatch}
+        return await this.httpHelper.Delete(this.id + this.PATH_POLICY, params, headers)
     }
 }
 
 export class Api extends PolicyEntity {
-    public name?: string;
-    public description?: string;
-    public serviceUrl?: string;
-    public path?: string;
-    public protocols?: string[];
-    public operations?: Collection<Operation>;
-    public subscriptionKeyParameterNames?: any;
+    public name?: string
+    public description?: string
+    public serviceUrl?: string
+    public path?: string
+    public protocols?: string[]
+    public operations?: Collection<Operation>
+    public subscriptionKeyParameterNames?: any
 }
 
 export class ImportLink {
-    public link?: string;
+    public link?: string
 }
 
 export class AuthorizationServer {
-    public id?: string;
-    public name?: string;
-    public description?: string;
-    public clientRegistrationEndpoint?: string;
-    public authorizationEndpoint?: string;
-    public authorizationMethods?: any[];
-    public clientAuthenticationMethod?: any[];
-    public tokenBodyParameters?: any[];
-    public tokenEndpoint?: string;
-    public supportState?: boolean;
-    public defaultScope?: string;
-    public grantTypes?: string[];
-    public bearerTokenSendingMethods?: string[];
-    public clientId?: string;
-    public clientSecret?: string;
-    public resourceOwnerUsername?: string;
-    public resourceOwnerPassword?: string;
+    public id?: string
+    public name?: string
+    public description?: string
+    public clientRegistrationEndpoint?: string
+    public authorizationEndpoint?: string
+    public authorizationMethods?: any[]
+    public clientAuthenticationMethod?: any[]
+    public tokenBodyParameters?: any[]
+    public tokenEndpoint?: string
+    public supportState?: boolean
+    public defaultScope?: string
+    public grantTypes?: string[]
+    public bearerTokenSendingMethods?: string[]
+    public clientId?: string
+    public clientSecret?: string
+    public resourceOwnerUsername?: string
+    public resourceOwnerPassword?: string
 }
 
 export class Backend {
-    public id?: string;
-    public host?: string;
-    public skipCertificateChainValidation?: boolean;
-    public skipCertificateNameValidation?: boolean;
+    public id?: string
+    public host?: string
+    public skipCertificateChainValidation?: boolean
+    public skipCertificateNameValidation?: boolean
 }
 
 export class Certificate {
-    public id?: string;
-    public subject?: string;
-    public thumbprint?: string;
-    public expirationDate?: Date;
-    public data?: string;
-    public password?: string;
+    public id?: string
+    public subject?: string
+    public thumbprint?: string
+    public expirationDate?: Date
+    public data?: string
+    public password?: string
 }
 
 export class Group extends GenericEntity {
-    public name?: string;
-    public description?: string;
-    public builtIn?: boolean;
-    public type?: string;
-    public externalId?: string;
+    public name?: string
+    public description?: string
+    public builtIn?: boolean
+    public type?: string
+    public externalId?: string
 
-    private readonly PATH_USERS = '/users';
+    private readonly PATH_USERS = '/users'
 
     public async ListUsers(filter?: string, top?: number, skip?: number) {
-        let params = {'$filter': filter, '$top': top, '$skip': skip};
-        return await this.httpHelper.GetCollection<User>(User, this.id + this.PATH_USERS, params);
+        let params = {'$filter': filter, '$top': top, '$skip': skip}
+        return await this.httpHelper.GetCollection<User>(User, this.id + this.PATH_USERS, params)
     }
 
     public async AddUser(uid: string) {
-        return await this.httpHelper.Put(this.id + uid);
+        return await this.httpHelper.Put(this.id + uid)
     }
 
     public async RemoveUser(uid: string) {
-        return await this.httpHelper.Delete(this.id + uid);
+        return await this.httpHelper.Delete(this.id + uid)
     }
 
     public async CheckUserMembership(uid: string) {
-        return await this.httpHelper.Head(this.id + uid);
+        return await this.httpHelper.Head(this.id + uid)
     }
 }
 
 export class Logger {
-    public id?: string;
-    public type?: string;
-    public description?: string;
-    public credentials?: any;
+    public id?: string
+    public type?: string
+    public description?: string
+    public credentials?: any
 }
 export class OperationSummary {
-    public id?: string;
-    public name?: string;
-    public method?: string;
-    public urlTemplate?: string;
-    public description?: string;
+    public id?: string
+    public name?: string
+    public method?: string
+    public urlTemplate?: string
+    public description?: string
 }
 
-export class Operation {
-    public id?: string;
-    public name?: string;
-    public nmethod?: string;
-    public urlTemplate?: string;
-    public templateParameters?: Parameter[];
-    public description?: string;
-    public request?: HttpRequest;
-    public responses?: HttpResponse[];
+export class Operation extends PolicyEntity {
+    public id?: string
+    public name?: string
+    public nmethod?: string
+    public urlTemplate?: string
+    public templateParameters?: Parameter[]
+    public description?: string
+    public request?: HttpRequest
+    public responses?: HttpResponse[]
 }
 
 export class Product extends PolicyEntity {
-    public name?: string;
-    public description?: string;
-    public terms?: string;
-    public subscriptionRequired?: boolean;
-    public approvalRequired?: boolean;
-    public subscriptionLimit?: number;
-    public state?: string;
-    public groups?: Group[];
+    public name?: string
+    public description?: string
+    public terms?: string
+    public subscriptionRequired?: boolean
+    public approvalRequired?: boolean
+    public subscriptionLimit?: number
+    public state?: string
+    public groups?: Group[]
 
-    private readonly PATH_APIS = '/apis';
+    private readonly PATH_APIS = '/apis'
 
     public async ListApis(filter?: string, top?: number, skip?: number) {
-        let params = {'$filter': filter, '$top': top, '$skip': skip};
-        return await this.httpHelper.GetCollection<Api>(Api, this.id + this.PATH_APIS, params);
+        let params = {'$filter': filter, '$top': top, '$skip': skip}
+        return await this.httpHelper.GetCollection<Api>(Api, this.id + this.PATH_APIS, params)
     }
 
     public async CheckApiMembership(aid: string) {
-        return await this.httpHelper.Head(this.id + aid);
+        return await this.httpHelper.Head(this.id + aid)
     }
 
     public async AddApi(aid: string) {
-        return await this.httpHelper.Put(this.id + aid);
+        return await this.httpHelper.Put(this.id + aid)
     }
 
     public async RemoveApi(aid: string) {
-        return await this.httpHelper.Delete(this.id + aid);
+        return await this.httpHelper.Delete(this.id + aid)
     }
 }
 
 export class Property {
-    public id?: string;
-    public name?: string;
-    public value?: string;
-    public tags?: string[];
-    public secret?: boolean;
+    public id?: string
+    public name?: string
+    public value?: string
+    public tags?: string[]
+    public secret?: boolean
 }
 
 export class Report {
-    public name?: string;
-    public timestamp?: Date;
-    public interval?: string;
-    public country?: string;
-    public region?: string;
-    public zip?: string;
-    public userId?: string;
-    public productId?: string;
-    public apiId?: string;
-    public operationId?: string;
-    public apiRegion?: string;
-    public subscriptionId?: string;
-    public callCountSuccess?: number;
-    public callCountBlocked?: number;
-    public callCountFailed?: number;
-    public callCountOther?: number;
-    public callCountTotal?: number;
-    public bandwidth?: number;
-    public cacheHitCount?: number;
-    public cacheMissCount?: number;
-    public apiTimeAvg?: number;
-    public apiTimeMin?: number;
-    public apiTimeMax?: number;
-    public serviceTimeAvg?: number;
-    public serviceTimeMin?: number;
-    public serviceTimeMax?: number;
+    public name?: string
+    public timestamp?: Date
+    public interval?: string
+    public country?: string
+    public region?: string
+    public zip?: string
+    public userId?: string
+    public productId?: string
+    public apiId?: string
+    public operationId?: string
+    public apiRegion?: string
+    public subscriptionId?: string
+    public callCountSuccess?: number
+    public callCountBlocked?: number
+    public callCountFailed?: number
+    public callCountOther?: number
+    public callCountTotal?: number
+    public bandwidth?: number
+    public cacheHitCount?: number
+    public cacheMissCount?: number
+    public apiTimeAvg?: number
+    public apiTimeMin?: number
+    public apiTimeMax?: number
+    public serviceTimeAvg?: number
+    public serviceTimeMin?: number
+    public serviceTimeMax?: number
 }
 
 export class Subscription extends GenericEntity {
-    public userId?: string;
-    public productId?: string;
-    public name?: string;
-    public state?: string;
-    public createdDate?: Date;
-    public startDate?: Date;
-    public expirationDate?: Date;
-    public endDate?: Date;
-    public notificationDate?: Date;
-    public primaryKey?: string;
-    public secondaryKey?: string;
-    public stateComment?: string;
+    public userId?: string
+    public productId?: string
+    public name?: string
+    public state?: string
+    public createdDate?: Date
+    public startDate?: Date
+    public expirationDate?: Date
+    public endDate?: Date
+    public notificationDate?: Date
+    public primaryKey?: string
+    public secondaryKey?: string
+    public stateComment?: string
 
     public async RegeneratePrimaryKey() {
-        return await this.httpHelper.Post(`${this.id}/regeneratePrimaryKey`);
+        return await this.httpHelper.Post(`${this.id}/regeneratePrimaryKey`)
     }
 
     public async RegenerateSecondaryKey() {
-        return await this.httpHelper.Post(`${this.id}/regenerateSecondaryKey`);
+        return await this.httpHelper.Post(`${this.id}/regenerateSecondaryKey`)
     }
 }
 
 export class User extends GenericEntity {
-    public firstName?: string;
-    public lastName?: string;
-    public password?: string;
-    public email?: string;
-    public state?: string;
-    public registrationDate?: Date;
-    public note?: string;
-    public groups?: Collection<Group>;
+    public firstName?: string
+    public lastName?: string
+    public password?: string
+    public email?: string
+    public state?: string
+    public registrationDate?: Date
+    public note?: string
+    public groups?: Collection<Group>
 
-    private readonly PATH_GROUPS = '/groups';
-    private readonly PATH_SUBSCRIPTIONS = '/subscriptions';
+    private readonly PATH_GROUPS = '/groups'
+    private readonly PATH_SUBSCRIPTIONS = '/subscriptions'
 
     public async ListGroups(filter?: string, top?: number, skip?: number) {
-        let params = {'$filter': filter, '$top': top, '$skip': skip};
-        return await this.httpHelper.GetCollection<Group>(Group, this.id + this.PATH_GROUPS, params);
+        let params = {'$filter': filter, '$top': top, '$skip': skip}
+        return await this.httpHelper.GetCollection<Group>(Group, this.id + this.PATH_GROUPS, params)
     }
 
     public async ListSubscriptions(filter?: string, top?: number, skip?: number) {
-        let params = {'$filter': filter, '$top': top, '$skip': skip};
-        return await this.httpHelper.GetCollection<Subscription>(Subscription, this.id + this.PATH_SUBSCRIPTIONS, params);
+        let params = {'$filter': filter, '$top': top, '$skip': skip}
+        return await this.httpHelper.GetCollection<Subscription>(Subscription, this.id + this.PATH_SUBSCRIPTIONS, params)
     }
 
     public async GettSingleSignOnUrl() {
-        return await this.httpHelper.Post(`${this.id}/generateSsoUrl`);
+        return await this.httpHelper.Post(`${this.id}/generateSsoUrl`)
     }
 }
