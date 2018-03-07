@@ -1,6 +1,6 @@
-import {AuthorizationServer} from '../entities';
-import {Collection} from '../representation';
-import {Credentials, HttpHelper} from '../utils';
+import {AuthorizationServer} from './entities';
+import {Collection} from './representation';
+import {Credentials, HttpHelper} from './utils';
 
 export class AuthorizationServerClient {
 

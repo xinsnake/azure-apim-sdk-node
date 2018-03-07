@@ -21,34 +21,34 @@ export const User = em.User;
 /*
  * Clients
  */
-import acm = require('./clients/api-client');
+import acm = require('./api-client');
 export const ApiClient = acm.ApiClient;
 
-import ascm = require('./clients/authorizationServer-client');
+import ascm = require('./authorizationServer-client');
 export const AuthorizationServerClient = ascm.AuthorizationServerClient;
 
-import bcm = require('./clients/backend-client');
+import bcm = require('./backend-client');
 export const BackendClient = bcm.BackendClient;
 
-import ccm = require('./clients/certificate-client');
+import ccm = require('./certificate-client');
 export const CertificateClient = ccm.CertificateClient;
 
-import gcm = require('./clients/group-client');
+import gcm = require('./group-client');
 export const GroupClient = gcm.GroupClient;
 
-import lcm = require('./clients/logger-client');
+import lcm = require('./logger-client');
 export const LoggerClient = lcm.LoggerClient;
 
-import prodcm = require('./clients/product-client');
+import prodcm = require('./product-client');
 export const ProductClient = prodcm.ProductClient;
 
-import propcm = require('./clients/property-client');
+import propcm = require('./property-client');
 export const PropertyClient = propcm.PropertyClient;
 
-import scm = require('./clients/subscription-client');
+import scm = require('./subscription-client');
 export const SubscriptionClient = scm.SubscriptionClient;
 
-import ucm = require('./clients/user-client');
+import ucm = require('./user-client');
 export const UserClient = ucm.UserClient;
 
 /*

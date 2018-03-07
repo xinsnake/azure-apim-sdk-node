@@ -1,6 +1,6 @@
-import {User} from '../entities';
-import {Collection} from '../representation';
-import {Credentials, HttpHelper} from '../utils';
+import {User} from './entities';
+import {Collection} from './representation';
+import {Credentials, HttpHelper} from './utils';
 
 export class UserClient {
 
