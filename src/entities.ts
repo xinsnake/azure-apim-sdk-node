@@ -7,8 +7,26 @@ export class Api extends PolicyEntity {
     public serviceUrl?: string
     public path?: string
     public protocols?: string[]
-    public operations?: Collection<Operation>
+    // public operations?: Collection<Operation>
     public subscriptionKeyParameterNames?: any
+
+    /* Get a list of all operations for a specific API */
+    public async ListOperations(): Promise<Operation[]> { return }
+
+    /* Get a specific operation */
+    public async GetOperation(): Promise<Operation> { return }
+
+    /* Get the metadata for a specific operation */
+    public async GetOperationMeta(): Promise<number> { return }
+
+    /* Create a new operation */
+    public async CreateOperation(): Promise<any> { return }
+
+    /* Update an operation */
+    public async UpdateOperation(): Promise<any> { return }
+
+    /* Delete an operation */
+    public async DeleteOperation(): Promise<any> { return }
 }
 
 export class AuthorizationServer {
