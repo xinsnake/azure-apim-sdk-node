@@ -7,25 +7,26 @@ export class Api extends PolicyEntity {
     public serviceUrl?: string
     public path?: string
     public protocols?: string[]
-    // public operations?: Collection<Operation>
     public subscriptionKeyParameterNames?: any
 
-    /* Get a list of all operations for a specific API */
+    private readonly PATH_OPERATIONS = '/operations'
+
+    /* TODO: Get a list of all operations for a specific API */
     public async ListOperations(): Promise<Operation[]> { return }
 
-    /* Get a specific operation */
+    /* TODO: Get a specific operation */
     public async GetOperation(): Promise<Operation> { return }
 
-    /* Get the metadata for a specific operation */
+    /* TODO: Get the metadata for a specific operation */
     public async GetOperationMeta(): Promise<number> { return }
 
-    /* Create a new operation */
+    /* TODO: Create a new operation */
     public async CreateOperation(): Promise<any> { return }
 
-    /* Update an operation */
+    /* TODO: Update an operation */
     public async UpdateOperation(): Promise<any> { return }
 
-    /* Delete an operation */
+    /* TODO: Delete an operation */
     public async DeleteOperation(): Promise<any> { return }
 }
 
@@ -74,19 +75,23 @@ export class Group extends GenericEntity {
 
     private readonly PATH_USERS = '/users'
 
+    /* List group members */
     public async ListUsers(filter?: string, top?: number, skip?: number) {
         let params = { '$filter': filter, '$top': top, '$skip': skip }
         return await this.httpHelper.GetCollection<User>(User, this.id + this.PATH_USERS, params)
     }
 
+    /* Add a member to a group */
     public async AddUser(uid: string) {
         return await this.httpHelper.Put(this.id + uid)
     }
 
+    /* Remove a member from a group */
     public async RemoveUser(uid: string) {
         return await this.httpHelper.Delete(this.id + uid)
     }
 
+    /* Check membership in a group */
     public async CheckUserMembership(uid: string) {
         return await this.httpHelper.Head(this.id + uid)
     }
