@@ -1,6 +1,6 @@
-import {Subscription} from './entities'
-import {Collection} from './representation'
-import {Credentials, HttpHelper} from './utils'
+import { Subscription } from './entities'
+import { Collection } from './representation'
+import { Credentials, HttpHelper } from './utils'
 
 export class SubscriptionClient {
 
@@ -14,7 +14,7 @@ export class SubscriptionClient {
     }
 
     public async GetAll(filter?: string, top?: number, skip?: number) {
-        let params = {'$filter': filter, '$top': top, '$skip': skip}
+        let params = { '$filter': filter, '$top': top, '$skip': skip }
         return await this.httpHelper.GetCollection<Subscription>(Subscription, this.PATH_SUBSCRIPTIONS, params)
     }
 
@@ -31,12 +31,12 @@ export class SubscriptionClient {
     }
 
     public async Update(sid: string, ifMatch: string, payload: Subscription) {
-        let headers = {'If-Match': ifMatch}
+        let headers = { 'If-Match': ifMatch }
         return await this.httpHelper.Patch(sid, undefined, headers, payload)
     }
 
     public async Delete(sid: string, ifMatch: string) {
-        let headers = {'If-Match': ifMatch}
+        let headers = { 'If-Match': ifMatch }
         return await this.httpHelper.Delete(sid, undefined, headers)
     }
 }

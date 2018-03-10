@@ -1,6 +1,6 @@
-import {Backend} from './entities'
-import {Collection} from './representation'
-import {Credentials, HttpHelper} from './utils'
+import { Backend } from './entities'
+import { Collection } from './representation'
+import { Credentials, HttpHelper } from './utils'
 
 export class BackendClient {
 
@@ -14,7 +14,7 @@ export class BackendClient {
     }
 
     public async GetAll(filter?: string, top?: number, skip?: number, expandGroups?: boolean) {
-        let params = {'$filter': filter, '$top': top, '$skip': skip, 'expandGroups': expandGroups}
+        let params = { '$filter': filter, '$top': top, '$skip': skip, 'expandGroups': expandGroups }
         return await this.httpHelper.GetCollection<Backend>(Backend, this.PATH_BACKENDS, params)
     }
 
@@ -31,12 +31,12 @@ export class BackendClient {
     }
 
     public async Update(backendId: string, ifMatch: string, payload: Backend) {
-        let headers = {'If-Match': ifMatch}
+        let headers = { 'If-Match': ifMatch }
         return await this.httpHelper.Patch(backendId, undefined, headers, payload)
     }
 
     public async Delete(backendId: string, ifMatch: string) {
-        let headers = {'If-Match': ifMatch}
+        let headers = { 'If-Match': ifMatch }
         return await this.httpHelper.Delete(backendId, undefined, headers)
     }
 }

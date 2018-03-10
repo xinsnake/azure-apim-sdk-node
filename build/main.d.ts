@@ -1,6 +1,5 @@
 import em = require('./entities');
 export declare const Api: typeof em.Api;
-export declare const ImportLink: typeof em.ImportLink;
 export declare const AuthorizationServer: typeof em.AuthorizationServer;
 export declare const Backend: typeof em.Backend;
 export declare const Certificate: typeof em.Certificate;

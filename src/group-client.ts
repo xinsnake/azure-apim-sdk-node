@@ -1,6 +1,6 @@
-import {Group} from './entities'
-import {Collection} from './representation'
-import {Credentials, HttpHelper} from './utils'
+import { Group } from './entities'
+import { Collection } from './representation'
+import { Credentials, HttpHelper } from './utils'
 
 export class GroupClient {
 
@@ -14,7 +14,7 @@ export class GroupClient {
     }
 
     public async GetAll(filter?: string, top?: number, skip?: number) {
-        let params = {'$filter': filter, '$top': top, '$skip': skip}
+        let params = { '$filter': filter, '$top': top, '$skip': skip }
         return await this.httpHelper.GetCollection<Group>(Group, this.PATH_GROUPS, params)
     }
 
@@ -31,12 +31,12 @@ export class GroupClient {
     }
 
     public async Update(gid: string, ifMatch: string, payload: Group) {
-        let headers = {'If-Match': ifMatch}
+        let headers = { 'If-Match': ifMatch }
         return await this.httpHelper.Patch(gid, undefined, headers, payload)
     }
 
     public async Delete(gid: string, ifMatch: string) {
-        let headers = {'If-Match': ifMatch}
+        let headers = { 'If-Match': ifMatch }
         return await this.httpHelper.Delete(gid, undefined, headers)
     }
 }

@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const em = require("./entities");
 exports.Api = em.Api;
-exports.ImportLink = em.ImportLink;
 exports.AuthorizationServer = em.AuthorizationServer;
 exports.Backend = em.Backend;
 exports.Certificate = em.Certificate;

@@ -1,6 +1,6 @@
-import {Property} from './entities'
-import {Collection} from './representation'
-import {Credentials, HttpHelper} from './utils'
+import { Property } from './entities'
+import { Collection } from './representation'
+import { Credentials, HttpHelper } from './utils'
 
 export class PropertyClient {
 
@@ -14,7 +14,7 @@ export class PropertyClient {
     }
 
     public async GetAll(filter?: string, top?: number, skip?: number) {
-        let params = {'$filter': filter, '$top': top, '$skip': skip}
+        let params = { '$filter': filter, '$top': top, '$skip': skip }
         return await this.httpHelper.GetCollection<Property>(Property, this.PATH_PROPERTIES, params)
     }
 
@@ -31,12 +31,12 @@ export class PropertyClient {
     }
 
     public async Update(propId: string, ifMatch: string, payload: Property) {
-        let headers = {'If-Match': ifMatch}
+        let headers = { 'If-Match': ifMatch }
         return await this.httpHelper.Patch(propId, undefined, headers, payload)
     }
 
     public async Delete(propId: string, ifMatch: string) {
-        let headers = {'If-Match': ifMatch}
+        let headers = { 'If-Match': ifMatch }
         return await this.httpHelper.Delete(propId, undefined, headers)
     }
 }

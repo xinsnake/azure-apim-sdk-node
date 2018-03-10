@@ -1,5 +1,6 @@
-import { Api, ImportLink } from './entities';
+import { Api } from './entities';
 import { Credentials } from './utils';
+import { ImportLink } from './entities-abstract';
 export declare class ApiClient {
     private readonly PATH_APIS;
     private credentials;

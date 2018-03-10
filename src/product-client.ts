@@ -1,6 +1,6 @@
-import {Product} from './entities'
-import {Collection} from './representation'
-import {Credentials, HttpHelper} from './utils'
+import { Product } from './entities'
+import { Collection } from './representation'
+import { Credentials, HttpHelper } from './utils'
 
 export class ProductClient {
 
@@ -14,7 +14,7 @@ export class ProductClient {
     }
 
     public async GetAll(filter?: string, top?: number, skip?: number, expandGroups?: boolean) {
-        let params = {'$filter': filter, '$top': top, '$skip': skip, 'expandGroups': expandGroups}
+        let params = { '$filter': filter, '$top': top, '$skip': skip, 'expandGroups': expandGroups }
         let products = await this.httpHelper.GetCollection<Product>(Product, this.PATH_PRODUCTS, params)
         products.forEach((product) => {
             product.SetCredentials(this.credentials)
@@ -36,13 +36,13 @@ export class ProductClient {
     }
 
     public async Update(pid: string, ifMatch: string, payload: Product) {
-        let headers = {'If-Match': ifMatch}
+        let headers = { 'If-Match': ifMatch }
         return await this.httpHelper.Patch(pid, undefined, headers, payload)
     }
 
     public async Delete(pid: string, deleteSubscriptions: boolean, ifMatch: string) {
-        let params = {'deleteSubscriptions': deleteSubscriptions}
-        let headers = {'If-Match': ifMatch}
+        let params = { 'deleteSubscriptions': deleteSubscriptions }
+        let headers = { 'If-Match': ifMatch }
         return await this.httpHelper.Delete(pid, params, headers)
     }
 }

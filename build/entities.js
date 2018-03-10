@@ -8,61 +8,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const utils_1 = require("./utils");
-class GenericEntity {
-    SetCredentials(_credentials) {
-        this.credentials = _credentials;
-        this.httpHelper = new utils_1.HttpHelper(this.credentials);
-        return this;
-    }
-}
-exports.GenericEntity = GenericEntity;
-class PolicyEntity extends GenericEntity {
-    constructor() {
-        super(...arguments);
-        this.PATH_POLICY = '/policy';
-    }
-    GetPolicy() {
-        return __awaiter(this, void 0, void 0, function* () {
-            let params = {};
-            let headers = { 'Content-Type': 'application/vnd.ms-azure-apim.policy+xml' };
-            return yield this.httpHelper.Get(String, this.id + this.PATH_POLICY, params, headers, true);
-        });
-    }
-    CheckPolicy() {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.httpHelper.Head(this.id + this.PATH_POLICY);
-        });
-    }
-    SetPolicy(ifMatch, rawXml, payload) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let params = {};
-            let contentType;
-            if (rawXml) {
-                contentType = 'application/vnd.ms-azure-apim.policy.raw+xml';
-            }
-            else {
-                contentType = 'application/vnd.ms-azure-apim.policy+xml';
-            }
-            let headers = { 'If-Match': ifMatch, 'Content-Type': contentType };
-            return yield this.httpHelper.Put(this.id + this.PATH_POLICY, params, headers, payload, true);
-        });
-    }
-    RemovePolicy(ifMatch) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let params = {};
-            let headers = { 'If-Match': ifMatch };
-            return yield this.httpHelper.Delete(this.id + this.PATH_POLICY, params, headers);
-        });
-    }
-}
-exports.PolicyEntity = PolicyEntity;
-class Api extends PolicyEntity {
+const entities_abstract_1 = require("./entities-abstract");
+class Api extends entities_abstract_1.PolicyEntity {
 }
 exports.Api = Api;
-class ImportLink {
-}
-exports.ImportLink = ImportLink;
 class AuthorizationServer {
 }
 exports.AuthorizationServer = AuthorizationServer;
@@ -72,7 +21,7 @@ exports.Backend = Backend;
 class Certificate {
 }
 exports.Certificate = Certificate;
-class Group extends GenericEntity {
+class Group extends entities_abstract_1.GenericEntity {
     constructor() {
         super(...arguments);
         this.PATH_USERS = '/users';
@@ -106,10 +55,10 @@ exports.Logger = Logger;
 class OperationSummary {
 }
 exports.OperationSummary = OperationSummary;
-class Operation extends PolicyEntity {
+class Operation extends entities_abstract_1.PolicyEntity {
 }
 exports.Operation = Operation;
-class Product extends PolicyEntity {
+class Product extends entities_abstract_1.PolicyEntity {
     constructor() {
         super(...arguments);
         this.PATH_APIS = '/apis';
@@ -143,7 +92,7 @@ exports.Property = Property;
 class Report {
 }
 exports.Report = Report;
-class Subscription extends GenericEntity {
+class Subscription extends entities_abstract_1.GenericEntity {
     RegeneratePrimaryKey() {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this.httpHelper.Post(`${this.id}/regeneratePrimaryKey`);
@@ -156,7 +105,7 @@ class Subscription extends GenericEntity {
     }
 }
 exports.Subscription = Subscription;
-class User extends GenericEntity {
+class User extends entities_abstract_1.GenericEntity {
     constructor() {
         super(...arguments);
         this.PATH_GROUPS = '/groups';

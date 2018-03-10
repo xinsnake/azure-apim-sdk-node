@@ -2,9 +2,7 @@
  * Entities
  */
 import em = require('./entities')
-// export const GenericEntity = em.GenericEntity
 export const Api = em.Api
-export const ImportLink = em.ImportLink
 export const AuthorizationServer = em.AuthorizationServer
 export const Backend = em.Backend
 export const Certificate = em.Certificate

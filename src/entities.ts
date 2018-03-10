@@ -1,51 +1,5 @@
-import {Credentials, HttpHelper} from './utils'
-import {Collection, Parameter, HttpRequest, HttpResponse} from './representation'
-
-export class GenericEntity {
-    public id?: string
-    protected httpHelper?: HttpHelper
-    protected credentials?: Credentials
-
-    public SetCredentials(_credentials: Credentials) {
-        this.credentials = _credentials
-        this.httpHelper = new HttpHelper(this.credentials)
-        return this
-    }
-}
-
-export class PolicyEntity extends GenericEntity {
-    protected readonly PATH_POLICY = '/policy'
-
-    public async GetPolicy() {
-        let params = {}
-        let headers = {'Content-Type': 'application/vnd.ms-azure-apim.policy+xml'}
-        return await this.httpHelper.Get<String>(String, this.id + this.PATH_POLICY, params, headers, true)
-    }
-
-    public async CheckPolicy() {
-        return await this.httpHelper.Head(this.id + this.PATH_POLICY)
-    }
-
-    public async SetPolicy(ifMatch: string, rawXml: boolean, payload: string) {
-        let params = {}
-
-        let contentType: string
-        if (rawXml) {
-            contentType = 'application/vnd.ms-azure-apim.policy.raw+xml'
-        } else {
-            contentType = 'application/vnd.ms-azure-apim.policy+xml'
-        }
-        let headers = {'If-Match': ifMatch, 'Content-Type': contentType}
-
-        return await this.httpHelper.Put(this.id + this.PATH_POLICY, params, headers, payload, true)
-    }
-
-    public async RemovePolicy(ifMatch: string) {
-        let params = {}
-        let headers = {'If-Match': ifMatch}
-        return await this.httpHelper.Delete(this.id + this.PATH_POLICY, params, headers)
-    }
-}
+import { PolicyEntity, GenericEntity } from './entities-abstract'
+import { Collection, Parameter, HttpRequest, HttpResponse } from './representation'
 
 export class Api extends PolicyEntity {
     public name?: string
@@ -55,10 +9,6 @@ export class Api extends PolicyEntity {
     public protocols?: string[]
     public operations?: Collection<Operation>
     public subscriptionKeyParameterNames?: any
-}
-
-export class ImportLink {
-    public link?: string
 }
 
 export class AuthorizationServer {
@@ -107,7 +57,7 @@ export class Group extends GenericEntity {
     private readonly PATH_USERS = '/users'
 
     public async ListUsers(filter?: string, top?: number, skip?: number) {
-        let params = {'$filter': filter, '$top': top, '$skip': skip}
+        let params = { '$filter': filter, '$top': top, '$skip': skip }
         return await this.httpHelper.GetCollection<User>(User, this.id + this.PATH_USERS, params)
     }
 
@@ -162,7 +112,7 @@ export class Product extends PolicyEntity {
     private readonly PATH_APIS = '/apis'
 
     public async ListApis(filter?: string, top?: number, skip?: number) {
-        let params = {'$filter': filter, '$top': top, '$skip': skip}
+        let params = { '$filter': filter, '$top': top, '$skip': skip }
         return await this.httpHelper.GetCollection<Api>(Api, this.id + this.PATH_APIS, params)
     }
 
@@ -253,12 +203,12 @@ export class User extends GenericEntity {
     private readonly PATH_SUBSCRIPTIONS = '/subscriptions'
 
     public async ListGroups(filter?: string, top?: number, skip?: number) {
-        let params = {'$filter': filter, '$top': top, '$skip': skip}
+        let params = { '$filter': filter, '$top': top, '$skip': skip }
         return await this.httpHelper.GetCollection<Group>(Group, this.id + this.PATH_GROUPS, params)
     }
 
     public async ListSubscriptions(filter?: string, top?: number, skip?: number) {
-        let params = {'$filter': filter, '$top': top, '$skip': skip}
+        let params = { '$filter': filter, '$top': top, '$skip': skip }
         return await this.httpHelper.GetCollection<Subscription>(Subscription, this.id + this.PATH_SUBSCRIPTIONS, params)
     }
 

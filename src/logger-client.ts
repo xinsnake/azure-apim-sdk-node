@@ -1,6 +1,6 @@
-import {Logger} from './entities'
-import {Collection} from './representation'
-import {Credentials, HttpHelper} from './utils'
+import { Logger } from './entities'
+import { Collection } from './representation'
+import { Credentials, HttpHelper } from './utils'
 
 export class LoggerClient {
 
@@ -14,7 +14,7 @@ export class LoggerClient {
     }
 
     public async GetAll(filter?: string, top?: number, skip?: number) {
-        let params = {'$filter': filter, '$top': top, '$skip': skip}
+        let params = { '$filter': filter, '$top': top, '$skip': skip }
         return await this.httpHelper.GetCollection<Logger>(Logger, this.PATH_LOGGERS, params)
     }
 
@@ -31,13 +31,13 @@ export class LoggerClient {
     }
 
     public async Update(loggerId: string, ifMatch: string, payload: Logger) {
-        let headers = {'If-Match': ifMatch}
+        let headers = { 'If-Match': ifMatch }
         return await this.httpHelper.Patch(loggerId, undefined, headers, payload)
     }
 
     public async Delete(loggerId: string, deleteSubscriptions: boolean, ifMatch: string) {
-        let params = {'deleteSubscriptions': deleteSubscriptions}
-        let headers = {'If-Match': ifMatch}
+        let params = { 'deleteSubscriptions': deleteSubscriptions }
+        let headers = { 'If-Match': ifMatch }
         return await this.httpHelper.Delete(loggerId, params, headers)
     }
 }

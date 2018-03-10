@@ -1,6 +1,6 @@
-import {AuthorizationServer} from './entities'
-import {Collection} from './representation'
-import {Credentials, HttpHelper} from './utils'
+import { AuthorizationServer } from './entities'
+import { Collection } from './representation'
+import { Credentials, HttpHelper } from './utils'
 
 export class AuthorizationServerClient {
 
@@ -14,7 +14,7 @@ export class AuthorizationServerClient {
     }
 
     public async GetAll(filter?: string, top?: number, skip?: number) {
-        let params = {'$filter': filter, '$top': top, '$skip': skip}
+        let params = { '$filter': filter, '$top': top, '$skip': skip }
         return await this.httpHelper.GetCollection<AuthorizationServer>(AuthorizationServer, this.PATH_AUTHORIZATION_SERVERS, params)
     }
 
@@ -31,12 +31,12 @@ export class AuthorizationServerClient {
     }
 
     public async Update(authsid: string, ifMatch: string, payload: AuthorizationServer) {
-        let headers = {'If-Match': ifMatch}
+        let headers = { 'If-Match': ifMatch }
         return await this.httpHelper.Patch(authsid, undefined, headers, payload)
     }
 
     public async Delete(authsid: string, ifMatch: string) {
-        let headers = {'If-Match': ifMatch}
+        let headers = { 'If-Match': ifMatch }
         return await this.httpHelper.Delete(authsid, undefined, headers)
     }
 }

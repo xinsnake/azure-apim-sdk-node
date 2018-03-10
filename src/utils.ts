@@ -1,4 +1,4 @@
-import {Collection} from './representation'
+import { Collection } from './representation'
 import * as crypto from 'crypto'
 import * as request from "request"
 import * as requestp from "request-promise-native"
@@ -61,7 +61,7 @@ export class HttpHelper {
         this.credentials = _credentials
     }
 
-    public async GetCollection<T>(type: {new(): T}, path: string, params?: any, headers?: any): Promise<T[]> {
+    public async GetCollection<T>(type: { new(): T }, path: string, params?: any, headers?: any): Promise<T[]> {
         let options: request.CoreOptions & request.UriOptions = {
             uri: this.prepareUri(path, params),
             baseUrl: this.credentials.serviceUri,
@@ -79,7 +79,7 @@ export class HttpHelper {
         })
     }
 
-    public async Get<T>(type: {new(): T}, path: string, params?: any, headers?: any, raw?: boolean): Promise<T> {
+    public async Get<T>(type: { new(): T }, path: string, params?: any, headers?: any, raw?: boolean): Promise<T> {
         let options: request.CoreOptions & request.UriOptions = {
             uri: this.prepareUri(path, params),
             baseUrl: this.credentials.serviceUri,

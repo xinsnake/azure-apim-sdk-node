@@ -1,18 +1,5 @@
-import { Credentials, HttpHelper } from './utils';
+import { PolicyEntity, GenericEntity } from './entities-abstract';
 import { Collection, Parameter, HttpRequest, HttpResponse } from './representation';
-export declare class GenericEntity {
-    id?: string;
-    protected httpHelper?: HttpHelper;
-    protected credentials?: Credentials;
-    SetCredentials(_credentials: Credentials): this;
-}
-export declare class PolicyEntity extends GenericEntity {
-    protected readonly PATH_POLICY: string;
-    GetPolicy(): Promise<String>;
-    CheckPolicy(): Promise<number>;
-    SetPolicy(ifMatch: string, rawXml: boolean, payload: string): Promise<any>;
-    RemovePolicy(ifMatch: string): Promise<void>;
-}
 export declare class Api extends PolicyEntity {
     name?: string;
     description?: string;
@@ -21,9 +8,6 @@ export declare class Api extends PolicyEntity {
     protocols?: string[];
     operations?: Collection<Operation>;
     subscriptionKeyParameterNames?: any;
-}
-export declare class ImportLink {
-    link?: string;
 }
 export declare class AuthorizationServer {
     id?: string;

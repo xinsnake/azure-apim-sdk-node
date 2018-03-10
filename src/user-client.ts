@@ -1,6 +1,6 @@
-import {User} from './entities'
-import {Collection} from './representation'
-import {Credentials, HttpHelper} from './utils'
+import { User } from './entities'
+import { Collection } from './representation'
+import { Credentials, HttpHelper } from './utils'
 
 export class UserClient {
 
@@ -14,7 +14,7 @@ export class UserClient {
     }
 
     public async GetAll(filter?: string, top?: number, skip?: number, expandGroups?: boolean) {
-        let params = {'$filter': filter, '$top': top, '$skip': skip, 'expandGroups': expandGroups}
+        let params = { '$filter': filter, '$top': top, '$skip': skip, 'expandGroups': expandGroups }
         return await this.httpHelper.GetCollection<User>(User, this.PATH_USERS, params)
     }
 
@@ -31,13 +31,13 @@ export class UserClient {
     }
 
     public async Update(uid: string, ifMatch: string, payload: User) {
-        let headers = {'If-Match': ifMatch}
+        let headers = { 'If-Match': ifMatch }
         return await this.httpHelper.Patch(uid, undefined, headers, payload)
     }
 
     public async Delete(uid: string, deleteSubscriptions: boolean, ifMatch: string) {
-        let params = {'deleteSubscriptions': deleteSubscriptions}
-        let headers = {'If-Match': ifMatch}
+        let params = { 'deleteSubscriptions': deleteSubscriptions }
+        let headers = { 'If-Match': ifMatch }
         return await this.httpHelper.Delete(uid, params, headers)
     }
 }
